@@ -12,12 +12,79 @@ namespace Exercise3
     {
         static void Main(string[] args)
         {
+            List<string> countNumbers = new List<string>()
+            {
+                "count1",
+                "count2",
+                "count3"
+            };
+
+            List<int> pins = new List<int>()
+            {
+                1111,
+                2222,
+                3333
+            };
+
             bool exit = false;
-            int balance = 0;
-            List<int> incomes = new List<int>();
-            List<int> outcomes = new List<int>();
+            List<int> balances = new List<int>()
+            {
+                0,
+                0,
+                0
+            };
+
+            List<List<int>> incomes = new List<List<int>>()
+            {
+                new List<int>() {}, 
+                new List<int>() {},
+                new List<int>() {}  
+            };
+
+            List<List<int>> outcomes = new List<List<int>>()
+            {
+                new List<int>() {},
+                new List<int>() {},
+                new List<int>() {}
+            };
+
             int income = 0;
             int outcome = 0;
+
+            int index = 0;
+
+            string countNumber = string.Empty;
+            int pin = 0;
+            bool init = false;
+
+            while (!init)
+            {
+                Console.WriteLine("Enter your count number: ");
+                countNumber = Console.ReadLine();
+                if (string.IsNullOrEmpty(countNumbers.Find(x => x == countNumber)))
+                {
+                    Console.WriteLine("Wrong count number");
+                }
+                else
+                {
+                    bool pinValid = false;
+                    while (!pinValid)
+                    {
+                        Console.WriteLine("Enter your pin: ");
+                        if(int.TryParse(Console.ReadLine(), out pin)) pinValid = true;
+                        if (!pinValid) Console.WriteLine("You have to enter integer values");
+                    }
+                    if (pin == pins[countNumbers.IndexOf(countNumber)])
+                    {
+                        index = countNumbers.IndexOf(countNumber);
+                        init = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong ping");
+                    }
+                };
+            }
 
             while (!exit)
             {
@@ -30,9 +97,9 @@ namespace Exercise3
                         try
                         {
                             income = int.Parse(Console.ReadLine());
-                            balance += income;
-                            incomes.Add(income);
-                            exit = FinalChoice(balance);
+                            balances[index] += income;
+                            incomes[index].Add(income);
+                            exit = FinalChoice(balances[index]);
                             break;
                         }
                         catch
@@ -45,9 +112,9 @@ namespace Exercise3
                         try
                         {
                             outcome = int.Parse(Console.ReadLine());
-                            balance -= outcome;
-                            outcomes.Add(outcome);
-                            exit = FinalChoice(balance);
+                            balances[index] -= outcome;
+                            outcomes[index].Add(outcome);
+                            exit = FinalChoice(balances[index]);
                             break;
                         }
                         catch
@@ -56,30 +123,30 @@ namespace Exercise3
                         }
                     case "3":
                         Console.WriteLine("List all movements.");
-                        foreach (var outcome1 in outcomes) { Console.WriteLine($"-{outcome1}"); }
-                        foreach (var income1 in incomes) { Console.WriteLine(income1); }
-                        exit = FinalChoice(balance);
+                        foreach (var outcome1 in outcomes[index]) { Console.WriteLine($"-{outcome1}"); }
+                        foreach (var income1 in incomes[index]) { Console.WriteLine(income1); }
+                        exit = FinalChoice(balances[index]);
                         break;
                     case "4":
                         Console.WriteLine("List incomes.");
-                        foreach (var income1 in incomes) { Console.WriteLine(income1); }
-                        exit = FinalChoice(balance);
+                        foreach (var income1 in incomes[index]) { Console.WriteLine(income1); }
+                        exit = FinalChoice(balances[index]);
                         break;
                     case "5":
                         Console.WriteLine("List outcomes.");
-                        foreach (var outcome1 in outcomes) { Console.WriteLine($"-{outcome1}"); }
-                        exit = FinalChoice(balance);
+                        foreach (var outcome1 in outcomes[index]) { Console.WriteLine($"-{outcome1}"); }
+                        exit = FinalChoice(balances[index]);
                         break;
                     case "6":
-                        Console.WriteLine($"Balance: {balance}$");
-                        exit = FinalChoice(balance);
+                        Console.WriteLine($"Balance: {balances[index]}$");
+                        exit = FinalChoice(balances[index]);
                         break;
                     case "7":
                         break;
 
                     default:
                         Console.WriteLine("Invalid operation.");
-                        exit = FinalChoice(balance);
+                        exit = FinalChoice(balances[index]);
                         break;
                 }
 

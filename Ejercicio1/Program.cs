@@ -14,6 +14,7 @@ namespace Ejercicio1
         {
 
             #region entries
+
             bool booleanVar = bool.Parse(ValidateInput("boolean"));
             int intVar = int.Parse(ValidateInput("integer"));
             double decimalVar = double.Parse(ValidateInput("decimal"));
@@ -24,7 +25,7 @@ namespace Ejercicio1
 
             #region salidas
             Console.WriteLine($"Opposite value of the input boolean: {!booleanVar}");
-            Console.WriteLine($"Division of the input integer by the input decimal: {intVar/decimalVar}");
+            Console.WriteLine($"Division of the input integer by the input decimal: {intVar / decimalVar}");
             Console.WriteLine($"{charVar}({textVar}){charVar}");
             Console.WriteLine($"Second: {dateVar.Second}, Day: {dateVar.Day}, Month: {dateVar.Month}");
 
@@ -46,10 +47,15 @@ namespace Ejercicio1
 
             while (!validation)
             {
-                Console.WriteLine($"Introduce a {type} value: ");
+                if(!(type == "boolean"))
+                    Console.WriteLine($"Introduce a {type} value: ");
+                else
+                    Console.WriteLine($"Introduce a {type} value ('true' and 'false' are the accepted values): ");
+
                 stringToValidate = Console.ReadLine();
+
                 validation = ValidateType(type, stringToValidate);
-                if(!validation) Console.WriteLine("Input value doesn´t match with the type required. Try again.");
+                if (!validation) Console.WriteLine("Input value doesn´t match with the type required. Try again.");
             }
 
             Console.WriteLine("Correct type \n");
