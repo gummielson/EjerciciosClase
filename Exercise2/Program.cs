@@ -18,6 +18,8 @@ namespace Exercise2
             List<string> listType;
             Dictionary<string, int> dictType = new Dictionary<string, int>();
 
+            Console.WriteLine("Hello World!");
+
             //Add some values to our variables
             for (int i = 1; i < 6; i++) { arrayType[i - 1] = i; }
             listType = new List<string>
