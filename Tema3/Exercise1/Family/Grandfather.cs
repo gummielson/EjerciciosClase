@@ -8,8 +8,18 @@ namespace Exercise1.Family
 {
     public class Grandfather
     {
-        public int MyGrandpaProp1 { get; set; }
-        protected int MyGrandpaProp2 { get; set; }
-        private int MyGrandpaProp3 { get; set; }
+        public string MyGrandpaProp1 { get; set; } = string.Empty;
+        protected string MyGrandpaProp2 { get; set; } = string.Empty;
+        private string MyGrandpaProp3 { get; set; } = string.Empty; 
+
+        public void SetMyGrandpaProp3(string value)
+        {
+            MyGrandpaProp3 = value;
+        }
+
+        public string GetMyGrandpaProp3()
+        {
+            return MyGrandpaProp3;
+        }
     }
 }
