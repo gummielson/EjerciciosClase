@@ -21,5 +21,12 @@ namespace Exercise1.Enums
             Doing,
             Done
         }
+
+        public enum Rol
+        {
+            Admin,
+            Manager,
+            Worker
+        }
     }
 }

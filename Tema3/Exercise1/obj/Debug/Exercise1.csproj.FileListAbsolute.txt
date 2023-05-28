@@ -1,0 +1,8 @@
+C:\GIT\Formacion\Tema2\Tema3\Exercise1\bin\Debug\Exercise1.exe.config
+C:\GIT\Formacion\Tema2\Tema3\Exercise1\bin\Debug\Exercise1.exe
+C:\GIT\Formacion\Tema2\Tema3\Exercise1\bin\Debug\Exercise1.pdb
+C:\GIT\Formacion\Tema2\Tema3\Exercise1\obj\Debug\Exercise1.csproj.AssemblyReference.cache
+C:\GIT\Formacion\Tema2\Tema3\Exercise1\obj\Debug\Exercise1.csproj.SuggestedBindingRedirects.cache
+C:\GIT\Formacion\Tema2\Tema3\Exercise1\obj\Debug\Exercise1.csproj.CoreCompileInputs.cache
+C:\GIT\Formacion\Tema2\Tema3\Exercise1\obj\Debug\Exercise1.exe
+C:\GIT\Formacion\Tema2\Tema3\Exercise1\obj\Debug\Exercise1.pdb

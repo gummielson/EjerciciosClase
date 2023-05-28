@@ -1,0 +1,8 @@
+C:\GIT\Formacion\Tema2\Tema3\Multiuser\obj\Debug\Multiuser.csproj.AssemblyReference.cache
+C:\GIT\Formacion\Tema2\Tema3\Multiuser\obj\Debug\Multiuser.csproj.SuggestedBindingRedirects.cache
+C:\GIT\Formacion\Tema2\Tema3\Multiuser\obj\Debug\Multiuser.csproj.CoreCompileInputs.cache
+C:\GIT\Formacion\Tema2\Tema3\Multiuser\bin\Debug\Multiuser.exe.config
+C:\GIT\Formacion\Tema2\Tema3\Multiuser\bin\Debug\Multiuser.exe
+C:\GIT\Formacion\Tema2\Tema3\Multiuser\bin\Debug\Multiuser.pdb
+C:\GIT\Formacion\Tema2\Tema3\Multiuser\obj\Debug\Multiuser.exe
+C:\GIT\Formacion\Tema2\Tema3\Multiuser\obj\Debug\Multiuser.pdb

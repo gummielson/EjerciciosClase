@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{12EDF19B-DE5D-4952-BFD8-2E198F2F01E3}</ProjectGuid>
+    <ProjectGuid>{450439AB-9DC2-4D56-8FA0-351909865BFE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Exercise1</RootNamespace>
-    <AssemblyName>Exercise1</AssemblyName>
+    <RootNamespace>Multiuser</RootNamespace>
+    <AssemblyName>Multiuser</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,9 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Family\Father.cs" />
-    <Compile Include="Family\Grandfather.cs" />
-    <Compile Include="Family\Son.cs" />
+    <Compile Include="Enterprise\ITWorker.cs" />
+    <Compile Include="Enterprise\Task.cs" />
+    <Compile Include="Enterprise\Team.cs" />
+    <Compile Include="Enterprise\Worker.cs" />
+    <Compile Include="Enums\Enum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
