@@ -37,10 +37,8 @@ namespace Exercise1.Family
         }
 
         /// <summary>
-        /// Validates the input based on the specified type.
+        /// Modify values of all properties.
         /// </summary>
-        /// <param name="type">The type of input to validate.</param>
-        /// <returns>The validated input as a string.</returns>
         public void ModifyValues()
         {
             Type tipo = typeof(Son);

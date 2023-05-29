@@ -126,6 +126,10 @@ namespace Multiuser
 
         #region login
 
+        /// <summary>
+        /// Performs the login process for IT workers.
+        /// </summary>
+        /// <returns>A dictionary containing the login result with the corresponding role and IT worker.</returns>
         public static Dictionary<Rol, ITWorker> Login()
         {
             bool login = false;
@@ -175,6 +179,9 @@ namespace Multiuser
 
         #region creates
 
+        /// <summary>
+        /// Creates a new IT worker.
+        /// </summary>
         public static void CreateITWorker()
         {
             ITWorker.Count++;
@@ -277,6 +284,9 @@ namespace Multiuser
             iTWorkers.Add(worker);
         }
 
+        /// <summary>
+        /// Creates a new team.
+        /// </summary>
         public static void CreateTeam()
         {
             Team team = new Team();
@@ -302,6 +312,9 @@ namespace Multiuser
             teams.Add(team);
         }
 
+        /// <summary>
+        /// Creates a new task.
+        /// </summary>
         public static Task CreateTask()
         {
             Task task = new Task();
@@ -319,6 +332,9 @@ namespace Multiuser
 
         #region lists
 
+        /// <summary>
+        /// List all team names.
+        /// </summary>
         public static void ListAllTeamNames()
         {
             Console.WriteLine("These are the teams: ");
@@ -329,6 +345,10 @@ namespace Multiuser
             }
         }
 
+        /// <summary>
+        /// Lists the team members of a given team.
+        /// </summary>
+        /// <param name="team">The team to list the members for.</param>
         public static void ListTeamMembersByTeam(Team team)
         {
             if(iTWorkers.Where(mng => mng.Id == team.Manager).Any())
@@ -345,6 +365,9 @@ namespace Multiuser
             }
         }
 
+        /// <summary>
+        /// Lists all aunassigned tasks.
+        /// </summary>
         public static void ListUnassignedTasks()
         {
             Console.WriteLine("Unassigned tasks: ");
@@ -354,6 +377,9 @@ namespace Multiuser
             }
         }
 
+        /// <summary>
+        /// Lists tasks by team.
+        /// </summary>
         public static void ListTasksByTeam()
         {
             List<ITWorker> workers = new List<ITWorker>();
@@ -375,6 +401,10 @@ namespace Multiuser
 
         #region assignments
 
+        /// <summary>
+        /// Assigns a manager to a team.
+        /// </summary>
+        /// <param name="team">The team to assign the manager to.</param>
         public static void AssignManager(Team team)
         {
             Console.WriteLine("Choose a manager for your team. These are the avaliable managers.");
@@ -424,6 +454,11 @@ namespace Multiuser
             }
         }
 
+
+        /// <summary>
+        /// Assigns a technician to a team.
+        /// </summary>
+        /// <param name="team">The team to assign the technician to.</param>
         public static void AssignTechnician(Team team)
         {
 
@@ -431,6 +466,11 @@ namespace Multiuser
             team.Technicians.Add(worker.Id);
         }
 
+
+        /// <summary>
+        /// Assigns a task to a worker.
+        /// </summary>
+        /// <param name="worker">The worker to assign the task to.</param>
         public static void AssignTask(ITWorker worker)
         {
             ListUnassignedTasks();
@@ -472,6 +512,10 @@ namespace Multiuser
 
         #region unregister
 
+        /// <summary>
+        /// Unregister a worker.
+        /// </summary>
+        /// <param name="team">The worker to unregsiter.</param>
         public static void UnregisterWorker(ITWorker worker)
         {
             iTWorkers.Remove(worker);
@@ -484,6 +528,11 @@ namespace Multiuser
 
         #region assits methods
 
+        /// <summary>
+        /// Selects a team.
+        /// </summary>
+        /// <param name="manager">Flag indicating if the selection is for a manager.</param>
+        /// <returns>The selected team.</returns>
         public static Team SelectATeam(bool manager = false)
         {
             Team team = new Team();
@@ -533,6 +582,10 @@ namespace Multiuser
             return team;
         }
 
+        /// <summary>
+        /// Selects an IT worker for a team.
+        /// </summary>
+        /// <returns>The selected IT worker.</returns>
         public static ITWorker SelectAWorkerTeam()
         {
             ITWorker worker = new ITWorker();
@@ -577,6 +630,10 @@ namespace Multiuser
             return worker;
         }
 
+        /// <summary>
+        /// Selects an IT worker for a task.
+        /// </summary>
+        /// <returns>The selected IT worker.</returns>
         public static ITWorker SelectAWorkerTask()
         {
             ITWorker worker = new ITWorker();
@@ -618,6 +675,10 @@ namespace Multiuser
             return worker;
         }
 
+        /// <summary>
+        /// Selects an IT worker.
+        /// </summary>
+        /// <returns>The selected IT worker.</returns>
         public static ITWorker SelectAWorker()
         {
             ITWorker worker = new ITWorker();
