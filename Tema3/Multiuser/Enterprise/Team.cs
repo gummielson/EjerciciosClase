@@ -16,8 +16,8 @@ namespace Exercise1.Enterprise
         [Required]
         public string Name { get; set; } = string.Empty;
 
-        public int Manager { get; set; }
+        public ITWorker Manager { get; set; }
 
-        public List<int> Technicians { get; set; } = new List<int>();
+        public List<ITWorker> Technicians { get; set; } = new List<ITWorker>();
     }
 }

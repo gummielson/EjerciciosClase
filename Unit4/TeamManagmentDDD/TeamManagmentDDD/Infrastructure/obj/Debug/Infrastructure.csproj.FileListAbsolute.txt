@@ -1,0 +1,6 @@
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\bin\Debug\Infrastructure.dll
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\bin\Debug\Infrastructure.pdb
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\obj\Debug\Infrastructure.csproj.AssemblyReference.cache
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\obj\Debug\Infrastructure.dll
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\obj\Debug\Infrastructure.pdb

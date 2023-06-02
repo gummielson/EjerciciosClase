@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Xml.Linq;
 using Exercise1.Enterprise;
+using Multiuser.Validations;
 using static Exercise1.Enums.Enum;
+using System.ComponentModel.DataAnnotations;
+using System.Activities.Expressions;
 
 namespace Multiuser
 {
-    internal class Program
+    public class Program
     {
         static List<Team> teams = new List<Team>();
         static List<ITWorker> iTWorkers = new List<ITWorker>();
+        private readonly Validation _validations = new Validation();
+
         static List<Task> tasks = new List<Task>();
 
         public static void Main(string[] args)
@@ -65,19 +68,54 @@ namespace Multiuser
                 switch (input)
                 {
                     case "1":
-                        CreateITWorker();
+                        if (rol == Rol.Admin)
+                        {
+                            CreateITWorker();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
                         break;
                     case "2":
-                        CreateTeam();
+                        if (rol == Rol.Admin)
+                        {
+                            CreateTeam();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
                         break;
                     case "3":
-                        tasks.Add(CreateTask());
+                        if (rol == Rol.Admin)
+                        {
+                            tasks.Add(CreateTask());
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
                         break;
                     case "4":
-                        ListAllTeamNames();
+                        if (rol == Rol.Admin)
+                        {
+                            ListAllTeamNames();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
                         break;
                     case "5":
-                        ListTeamMembersByTeam(SelectATeam());
+                        if (rol == Rol.Admin || rol == Rol.Manager)
+                        {
+                            ListTeamMembersByTeam(SelectATeam());
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
                         break;
                     case "6":
                         ListUnassignedTasks();
@@ -86,19 +124,47 @@ namespace Multiuser
                         ListTasksByTeam();
                         break;
                     case "8":
-                        AssignManager(SelectATeam(true));
+                        if (rol == Rol.Admin)
+                        {
+                            AssignManager(SelectATeam(true));
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
                         break;
                     case "9":
-                        AssignTechnician(SelectATeam());
+                        if (rol == Rol.Admin || rol == Rol.Manager)
+                        {
+                            AssignTechnician(SelectATeam());
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
                         break;
                     case "10":
                         AssignTask(SelectAWorkerTask());
                         break;
                     case "11":
-                        UnregisterWorker(SelectAWorker());
+                        if (rol == Rol.Admin)
+                        {
+                            UnregisterWorker(SelectAWorker());
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
                         break;
                     case "12":
-                        exit = true;
+                        if (rol == Rol.Admin)
+                        {
+                            exit = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
                         break;
                     default:
                         Console.WriteLine("Invalid operation.");
@@ -106,7 +172,7 @@ namespace Multiuser
                         break;
                 }
 
-                Console.Write("Do you want to make other operation? Write 'Yes' if you want to make another operation. Write 'No' if you dont want to make other operation.");
+                Console.Write("\nDo you want to make other operation? Write 'Yes' if you want to make another operation. Write 'No' if you dont want to make other operation.");
                 switch (Console.ReadLine())
                 {
                     case "Yes":
@@ -133,7 +199,7 @@ namespace Multiuser
         public static Dictionary<Rol, ITWorker> Login()
         {
             bool login = false;
-            int maxTries = 5;
+            const int maxTries = 4;
             int tries = 0;
             Dictionary<Rol, ITWorker> dict = new Dictionary<Rol, ITWorker>();
 
@@ -184,104 +250,25 @@ namespace Multiuser
         /// </summary>
         public static void CreateITWorker()
         {
-            ITWorker.Count++;
-            ITWorker worker = new ITWorker();
-            worker.Id = ITWorker.Count;
-
-            Console.WriteLine("Enter a name:");
-            worker.Name = Console.ReadLine();
-
-            Console.WriteLine("Enter a surname:");
-            worker.Surname = Console.ReadLine();
-
-            bool loop = false;
-            while (!loop)
+            try
             {
-                Console.WriteLine("Enter a birthdate (DD/MM/YYYY): (Must be of legal age)");
-                if (DateTime.TryParse(Console.ReadLine(), out DateTime birthDate))
-                {
-                    if (DateTime.Today.Year - birthDate.Year < 18)
-                    {
-                        Console.WriteLine("The entered birthdate does not correspond to someone of legal age");
-                    }
-                    else
-                    {
-                        worker.BirthDate = birthDate;
-                        loop = true;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid date format.");
-                }
-            }
+                ITWorker.Count++;
+                ITWorker worker = new ITWorker();
 
-            loop = false;
-            while (!loop)
+                worker.Id = ITWorker.Count;
+                worker.Name = GetName();
+                worker.Surname = GetSurname();
+                worker.BirthDate = GetBirthDate();
+                worker.YearsOfExperience = GetYearsOfExperience();
+                worker.TechKnowledges = GetTechKnowledges();
+                worker.ITLevel = GetItLevel(worker.YearsOfExperience);
+
+                _validations.ValidateObject(worker);
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine("Enter a years of experience:");
-                if (int.TryParse(Console.ReadLine(), out int years))
-                {
-                    worker.YearsOfExperience = years;
-                    loop |= true;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please try again.");
-                }
+                Console.WriteLine($"\nInvalid data: \n{ex.Message}");
             }
-
-            loop = false;
-            while (!loop)
-            {
-                Console.WriteLine("Enter a tech knowledge:");
-                worker.TechKnowledges.Add(Console.ReadLine());
-
-                Console.WriteLine("Do you want to add another tech? (Write 'Yes' or 'No')");
-                string response = Console.ReadLine();
-                if (!(response == "No" || response == "Yes"))
-                {
-                    Console.WriteLine("Invalid input.");
-                    loop = true;
-                }
-                else if (response == "No")
-                {
-                    loop = true;
-                }
-            }
-
-            bool create = false;
-            while (!create)
-            {
-                Console.WriteLine("Enter developer level ('Junior', 'Medium' and 'Senior' are the accepted values. A senior dev has to have at least 5 years of expirience):");
-                switch (Console.ReadLine())
-                {
-                    case "Junior":
-                        worker.ITLevel = Level.Junior;
-                        create = true;
-                        break;
-                    case "Medium":
-                        worker.ITLevel = Level.Medium;
-                        create = true;
-                        break;
-                    case "Senior":
-                        if (worker.YearsOfExperience >= 5)
-                        {
-                            worker.ITLevel = Level.Senior;
-                            create = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine("A senior dev has to have at least 5 years of expirience, try again.");
-                        }
-                        break;
-                    default:
-                        Console.WriteLine("Invalid option. Please, enter a valid option.");
-                        break;
-                }
-            }
-
-            iTWorkers.Add(worker);
         }
 
         /// <summary>
@@ -351,16 +338,16 @@ namespace Multiuser
         /// <param name="team">The team to list the members for.</param>
         public static void ListTeamMembersByTeam(Team team)
         {
-            if(iTWorkers.Where(mng => mng.Id == team.Manager).Any())
+            if (iTWorkers.Where(mng => mng == team.Manager).Any())
             {
-                ITWorker manager = iTWorkers.Where(mng => mng.Id == team.Manager).FirstOrDefault();
+                ITWorker manager = iTWorkers.Where(mng => mng == team.Manager).FirstOrDefault();
                 Console.WriteLine($"{manager.Name} {manager.Surname}");
 
             }
 
             foreach (var member in team.Technicians)
             {
-                ITWorker currentWorker = iTWorkers.Where(worker => worker.Id == member).FirstOrDefault();
+                ITWorker currentWorker = iTWorkers.Where(worker => worker == member).FirstOrDefault();
                 Console.WriteLine($"{currentWorker.Name} {currentWorker.Surname}");
             }
         }
@@ -385,7 +372,7 @@ namespace Multiuser
             List<ITWorker> workers = new List<ITWorker>();
             foreach (var tecnician in SelectATeam().Technicians)
             {
-                workers.Add(iTWorkers.Where(iTWorker => iTWorker.Id == tecnician).ToList().FirstOrDefault());
+                workers.Add(iTWorkers.Where(iTWorker => iTWorker == tecnician).ToList().FirstOrDefault());
             }
 
             Console.WriteLine("These are the team tasks");
@@ -414,7 +401,7 @@ namespace Multiuser
             {
                 if (teams.Any())
                 {
-                    if (!teams.Where(team1 => team1.Manager == worker.Id).Any())
+                    if (!teams.Where(team1 => team1.Manager == worker).Any())
                     {
                         if (!avaibleManagers.Contains(worker))
                         {
@@ -443,7 +430,7 @@ namespace Multiuser
                 }
                 else if (avaibleManagers.Where(avbMng => avbMng.Id == id).Any())
                 {
-                    team.Manager = id;
+                    team.Manager.Id = id;
                     loop = true;
                 }
                 else
@@ -461,9 +448,8 @@ namespace Multiuser
         /// <param name="team">The team to assign the technician to.</param>
         public static void AssignTechnician(Team team)
         {
-
             ITWorker worker = SelectAWorker();
-            team.Technicians.Add(worker.Id);
+            team.Technicians.Add(worker);
         }
 
 
@@ -546,7 +532,7 @@ namespace Multiuser
             else
             {
                 Console.WriteLine("These are the teams without an assigned manager");
-                teamsNoMng = teams.Where(team2 => team2.Manager == 0).ToList();
+                teamsNoMng = teams.Where(team2 => team2.Manager.Id == 0).ToList();
                 foreach (var team1 in teamsNoMng)
                 {
                     Console.WriteLine(team1.Name);
@@ -599,7 +585,7 @@ namespace Multiuser
                 {
                     foreach (var currentTeam in teams)
                     {
-                        if (!currentTeam.Technicians.Contains(worker1.Id))
+                        if (!currentTeam.Technicians.Contains(worker1))
                         {
                             Console.WriteLine($"Id: {worker1.Id} Name: {worker1.Name} {worker1.Surname}");
                             avaibleWorkers.Add(worker1);
@@ -716,6 +702,83 @@ namespace Multiuser
 
             return worker;
         }
+        #endregion
+
+        #region get data
+        public static string GetName()
+        {
+            Console.WriteLine("Enter a name:");
+            return Console.ReadLine();
+        }
+
+        public static string GetSurname()
+        {
+            Console.WriteLine("Enter a surname:");
+            return Console.ReadLine();
+        }
+
+        public static DateTime GetBirthDate()
+        {
+            Console.WriteLine("Enter a birth date (MM/dd/yyyy), must be of legal age: ");
+            return DateTime.TryParseExact(
+                Console.ReadLine(),
+                "MM/dd/yyyy",
+                null,
+                System.Globalization.DateTimeStyles.None,
+                out DateTime birthday) ? birthday : new DateTime();
+        }
+
+        public static int GetYearsOfExperience()
+        {
+            Console.WriteLine("Enter years of experience, must be postive and numeric: ");
+            return int.TryParse(Console.ReadLine(), out int years) ? years : 0;
+        }
+
+        public static List<string> GetTechKnowledges()
+        {
+            List<string> techs = new List<string>();
+
+            string input;
+            do
+            {
+                Console.WriteLine("Enter a tecch (or 'No' to continue): ");
+                input = Console.ReadLine();
+                if (input != "No")
+                {
+                    techs.Add(input);
+                }
+            } while (input != "No");
+
+            return techs;
+        }
+
+        public static Level GetItLevel(int years)
+        {
+            Console.WriteLine("Enter a level (Junior, Medium and Senior are the accepted values): ");
+            switch (Console.ReadLine())
+            {
+                case "Junior":
+                    return Level.Junior;
+                case "Medium":
+                    return Level.Medium;
+                case "Senior":
+                    if (years >= 5)
+                    {
+                        return Level.Senior;
+                    }
+                    else
+                    {
+                        Console.WriteLine("A senior dev has to have at least 5 years of expirience. Returning junior level by default.");
+                        return Level.Junior;
+                    }
+                default:
+                    Console.WriteLine("Invalid option. Returns junior level by default.");
+                    return Level.Junior;
+            }
+        }
+        #endregion
+
+        #region validations
         #endregion
 
     }

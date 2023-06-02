@@ -1,0 +1,11 @@
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure.Data\bin\Debug\Infrastructure.Data.dll
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure.Data\bin\Debug\Infrastructure.Data.pdb
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure.Data\bin\Debug\Domain.dll
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure.Data\bin\Debug\Infrastructure.dll
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure.Data\bin\Debug\Domain.pdb
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure.Data\bin\Debug\Infrastructure.pdb
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure.Data\obj\Debug\Infrastructure.Data.csproj.AssemblyReference.cache
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure.Data\obj\Debug\Infrastructure.Data.csproj.CoreCompileInputs.cache
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure.Data\obj\Debug\Infrastructure.Data.csproj.CopyComplete
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure.Data\obj\Debug\Infrastructure.Data.dll
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure.Data\obj\Debug\Infrastructure.Data.pdb

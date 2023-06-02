@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Multiuser.Attributes;
 
 namespace Exercise1.Enterprise
 {
@@ -14,15 +11,19 @@ namespace Exercise1.Enterprise
         public int Id { get; set; } 
 
         [Required]
+        [StringLength(50, ErrorMessage = "Name only can have 50 characters")]
+        [RegularExpression(@"^[^0-9]*$", ErrorMessage = "Name can't contain numeric chars.")]
         public string Name { get; set; } = string.Empty;
 
         [Required]
+        [StringLength(50, ErrorMessage = "Surname only can have 50 characters")]
+        [RegularExpression(@"^[^0-9]*$", ErrorMessage = "Surname can't contain numeric chars.")]
         public string Surname { get; set; } = string.Empty;
 
         [Required]
+        [AdultAge(ErrorMessage = "The entered birthdate does not correspond to someone of legal age")]
         public DateTime BirthDate { get; set; } = new DateTime();
 
-        [Required]
         public DateTime LeavingDate { get; set; } = new DateTime();
 
         public static int Count { get; set; } 

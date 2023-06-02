@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\AdultAgeAttribute.cs" />
     <Compile Include="Enterprise\ITWorker.cs" />
     <Compile Include="Enterprise\Task.cs" />
     <Compile Include="Enterprise\Team.cs" />
@@ -51,6 +53,7 @@
     <Compile Include="Enums\Enum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validations\Validation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
