@@ -18,6 +18,11 @@ namespace Infrastructure.Data.Repositories
             teams.Add(team);
         }
 
+        public List<Team> GetTeams() 
+        {
+            return teams;
+        }
+
         public void CreatingMockTeamData()
         {
             teams = new List<Team>()

@@ -14,6 +14,8 @@ namespace Presentation.Screens
         private readonly Option1Screen _option1Screen;
         private readonly Option2Screen _option2Screen;
         private readonly Option3Screen _option3Screen;
+        private readonly Option4Screen _option4Screen;
+        private readonly Option5Screen _option5Screen;
 
         public MainMenuScreen(ITWorkerController iTWorkerController, TeamController teamController, TaskController taskController)
         {
@@ -24,6 +26,8 @@ namespace Presentation.Screens
             _option1Screen = new Option1Screen(iTWorkerController);
             _option2Screen = new Option2Screen(teamController);
             _option3Screen = new Option3Screen(taskController);
+            _option4Screen = new Option4Screen(teamController);
+            _option5Screen = new Option5Screen(teamController);
         }
 
         public void Start()
@@ -75,6 +79,12 @@ namespace Presentation.Screens
                     break;
                 case "3":
                     _option3Screen.Start();
+                    break;
+                case "4":
+                    _option4Screen.Start();
+                    break;
+                case "5":
+                    _option5Screen.Start();
                     break;
                 case "12":
                     break;

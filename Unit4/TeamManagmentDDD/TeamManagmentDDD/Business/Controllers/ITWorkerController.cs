@@ -13,6 +13,7 @@ namespace Business.Controllers
             _iTWorkerService = iTWorkerServices;
         }
 
+        //POST
         public CreateWorkerResponseDTO CreateWorker(CreateWorkerRequestDTO createWorkerRequest)
         {
             return _iTWorkerService.CreateWorker(createWorkerRequest);

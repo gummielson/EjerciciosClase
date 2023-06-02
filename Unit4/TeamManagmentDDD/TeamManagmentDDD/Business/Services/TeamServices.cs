@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Business.DTO.RequestDTO;
 using Business.DTO.ResponseDTO;
 using Business.Validations;
@@ -13,7 +14,7 @@ namespace Business.Services
         private readonly ValidateDataAnnotations _validateDataAnnotations;
         private readonly ITeamRepository _teamRepository;
 
-        public TeamServices(TeamRepository teamRepository, ValidateDataAnnotations validateDataAnnotations) 
+        public TeamServices(TeamRepository teamRepository, ValidateDataAnnotations validateDataAnnotations)
         {
             _validateDataAnnotations = new ValidateDataAnnotations();
             _teamRepository = teamRepository;
@@ -38,14 +39,61 @@ namespace Business.Services
             return response;
         }
 
-        public Team GenerateTeamEntity(CreateTeamRequestDTO request)
+        public List<GetTeamsResponseDTO> GetTeams()
+        {
+            List<GetTeamsResponseDTO> response = new List<GetTeamsResponseDTO>();
+
+            foreach (var team in _teamRepository.GetTeams())
+            {
+                response.Add(GenerateGetTeamResponse(team));
+            }
+            return response;
+        }
+
+        public GetTeamMembersByTeamResponseDTO GetTeamsMembersByTeam(GetTeamMembersByTeamRequestDTO getTeamMembersByTeamRequestDTO)
+        {
+            GetTeamMembersByTeamResponseDTO response = new GetTeamMembersByTeamResponseDTO();
+            Team team = _teamRepository.GetTeams().Where(team1 => team1.Name.ToLower() == getTeamMembersByTeamRequestDTO.TeamName.ToLower()).FirstOrDefault();
+
+            if (team != null)
+            {
+                response = GenerateGetTeamMembersResponse(team);
+            }
+            else
+            {
+                response.Error = true;
+                response.ErrorMessage = "The entered team doesn't exists";
+            }
+
+            return response;
+        }
+
+        private Team GenerateTeamEntity(CreateTeamRequestDTO request)
         {
             return new Team()
             {
                 Name = request.Name,
                 Manager = new ITWorker(),
                 Technicians = new List<ITWorker>()
+            };
+        }
 
+        private GetTeamsResponseDTO GenerateGetTeamResponse(Team team)
+        {
+            return new GetTeamsResponseDTO()
+            {
+                IdTeam = team.Id,
+                NameTeam = team.Name
+            };
+        }
+
+        private GetTeamMembersByTeamResponseDTO GenerateGetTeamMembersResponse(Team team)
+        {
+            return new GetTeamMembersByTeamResponseDTO()
+            {
+                Manager = team.Manager == null ? "This team has no manager assigned yet" : $"{team.Manager.Name} {team.Manager.Surname}",
+                TeamMembers = team.Technicians != null ? team.Technicians.Select(worker => $"{worker.Name} {worker.Surname}").ToList() : new List<string>(),
+                Error = false
             };
         }
     }
