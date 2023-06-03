@@ -7,6 +7,5 @@ namespace Business.Services
     public interface IITWorkerServices
     {
         CreateWorkerResponseDTO CreateWorker(CreateWorkerRequestDTO request);
-        ITWorker GenerateITWorkerEntity(CreateWorkerRequestDTO request);
     }
 }

@@ -5,29 +5,40 @@ namespace Presentation.Screens
 {
     public class MainMenuScreen
     {
+        #region private fields
+
         private string _option;
 
         private readonly IITWorkerController _iITWorkerController;
         private readonly ITeamController _teamController;
         private readonly ITaskController _taskController;
+        private readonly ITasksByTeamController _tasksByTeamController;
 
         private readonly Option1Screen _option1Screen;
         private readonly Option2Screen _option2Screen;
         private readonly Option3Screen _option3Screen;
         private readonly Option4Screen _option4Screen;
         private readonly Option5Screen _option5Screen;
+        private readonly Option6Screen _option6Screen;
+        private readonly Option7Screen _option7Screen;
+        #endregion
 
-        public MainMenuScreen(ITWorkerController iTWorkerController, TeamController teamController, TaskController taskController)
+        public MainMenuScreen(ITWorkerController iTWorkerController, TeamController teamController, TaskController taskController, TasksByTeamController tasksByTeamController)
         {
             _teamController = teamController;
             _taskController = taskController;
             _iITWorkerController = iTWorkerController;
+            _tasksByTeamController = tasksByTeamController;
 
+            #region screens ctor
             _option1Screen = new Option1Screen(iTWorkerController);
             _option2Screen = new Option2Screen(teamController);
             _option3Screen = new Option3Screen(taskController);
             _option4Screen = new Option4Screen(teamController);
             _option5Screen = new Option5Screen(teamController);
+            _option6Screen = new Option6Screen(taskController);
+            _option7Screen = new Option7Screen(tasksByTeamController);
+            #endregion
         }
 
         public void Start()
@@ -62,6 +73,8 @@ namespace Presentation.Screens
 
             Console.Write("Choose the number of the option: ");
             _option = Console.ReadLine();
+            Console.WriteLine("\n");
+
         }
 
         /// <summary>
@@ -85,6 +98,12 @@ namespace Presentation.Screens
                     break;
                 case "5":
                     _option5Screen.Start();
+                    break;
+                case "6":
+                    _option6Screen.Start();
+                    break;
+                case "7":
+                    _option7Screen.Start();
                     break;
                 case "12":
                     break;

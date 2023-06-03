@@ -10,5 +10,6 @@ namespace Business.Services
         CreateTeamResponseDTO CreateTeam(CreateTeamRequestDTO request);
         List<GetTeamsResponseDTO> GetTeams();
         GetTeamMembersByTeamResponseDTO GetTeamsMembersByTeam(GetTeamMembersByTeamRequestDTO getTeamMembersByTeamRequestDTO);
+        List<ITWorker> GetITWorkersByTeam(GetTaskByTeamRequestDTO request);
     }
 }

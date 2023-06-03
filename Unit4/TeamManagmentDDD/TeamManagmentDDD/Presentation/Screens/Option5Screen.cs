@@ -36,7 +36,7 @@ namespace Presentation.Screens
             }
             else
             {
-                getTeamMembersByTeamResponseDTO.ToString();
+                Console.WriteLine(getTeamMembersByTeamResponseDTO.ToString());
             };
         }
 

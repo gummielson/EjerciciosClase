@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Business.DTO.RequestDTO;
 using Business.DTO.ResponseDTO;
 using Business.Validations;
@@ -37,13 +38,36 @@ namespace Business.Services
             return response;
         }
 
-        public TaskEntity GenerateTaskEntity(CreateTaskRequestDTO request)
+        public GetUnassignedTaskResponseDTO GetUnassignedTasks()
+        {
+            return TaskEntityToResponse(_taskRepositoriy.GetUnassignedTasks());
+        }
+
+        public List<TaskEntity> GetAssignedTasks(List<ITWorker> iTWorkers)
+        {
+            return _taskRepositoriy.GetAssignedTasks(iTWorkers);
+        }
+
+        private TaskEntity GenerateTaskEntity(CreateTaskRequestDTO request)
         {
             return new TaskEntity()
             {
                 Description = request.Description,
                 Technology = request.Technology
             };
+        }
+
+        private GetUnassignedTaskResponseDTO TaskEntityToResponse(List<TaskEntity> tasks)
+        {
+            GetUnassignedTaskResponseDTO response = new GetUnassignedTaskResponseDTO();
+
+            foreach (TaskEntity task in tasks) 
+            {
+                response.idsTasks.Add(task.Id);
+                response.unassignedTaskDesc.Add(task.Description);
+            }
+
+            return response;
         }
     }
 }

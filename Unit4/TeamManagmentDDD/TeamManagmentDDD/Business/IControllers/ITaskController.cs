@@ -6,5 +6,6 @@ namespace Business.Controllers
     public interface ITaskController
     {
         CreateTaskResponseDTO CreateTask(CreateTaskRequestDTO createTaskRequest);
+        GetUnassignedTaskResponseDTO GetUnassignedTasks();
     }
 }

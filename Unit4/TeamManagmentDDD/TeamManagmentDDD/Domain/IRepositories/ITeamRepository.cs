@@ -5,7 +5,7 @@ namespace Infrastructure.Data.Repositories
 {
     public interface ITeamRepository
     {
-        void CreateWorker(Team team);
+        void CreateTeam(Team team);
         List<Team> GetTeams();
         void CreatingMockTeamData();
     }

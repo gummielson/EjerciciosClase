@@ -19,5 +19,10 @@ namespace Business.Controllers
             return _taskService.CreateTask(createTaskRequest);
         }
 
+        //GET
+        public GetUnassignedTaskResponseDTO GetUnassignedTasks()
+        {
+            return _taskService.GetUnassignedTasks();
+        }
     }
 }

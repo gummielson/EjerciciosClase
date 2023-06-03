@@ -28,7 +28,7 @@ namespace Business.Services
             {
                 Team team = GenerateTeamEntity(request);
                 _validateDataAnnotations.ValidateObject(team);
-                _teamRepository.CreateWorker(team);
+                _teamRepository.CreateTeam(team);
                 response.ResultMessage = "\nThe team was loaded properly";
             }
             catch (Exception ex)
@@ -66,6 +66,13 @@ namespace Business.Services
             }
 
             return response;
+        }
+
+        public List<ITWorker> GetITWorkersByTeam(GetTaskByTeamRequestDTO request)
+        {
+            Team team = _teamRepository.GetTeams().Where(team1 => team1.Name.ToLower() == request.TeamName.ToLower()).FirstOrDefault();
+
+            return team != null ? team.Technicians : null;
         }
 
         private Team GenerateTeamEntity(CreateTeamRequestDTO request)

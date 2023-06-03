@@ -13,7 +13,7 @@ namespace Infrastructure.Data.Repositories
             CreatingMockTeamData();
         }
 
-        public void CreateWorker(Team team)
+        public void CreateTeam(Team team)
         {
             teams.Add(team);
         }

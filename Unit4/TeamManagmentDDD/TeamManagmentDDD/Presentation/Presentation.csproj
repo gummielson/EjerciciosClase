@@ -60,6 +60,8 @@
     <Compile Include="Screens\Option3Screen.cs" />
     <Compile Include="Screens\Option4Screen.cs" />
     <Compile Include="Screens\Option5Screen.cs" />
+    <Compile Include="Screens\Option6Screen.cs" />
+    <Compile Include="Screens\Option7Screen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

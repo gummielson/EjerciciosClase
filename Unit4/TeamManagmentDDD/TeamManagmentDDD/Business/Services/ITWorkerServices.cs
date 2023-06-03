@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Business.DTO.RequestDTO;
 using Business.DTO.ResponseDTO;
 using Business.Validations;
@@ -38,7 +39,7 @@ namespace Business.Services
             return response;
         }
 
-        public ITWorker GenerateITWorkerEntity(CreateWorkerRequestDTO request)
+        private ITWorker GenerateITWorkerEntity(CreateWorkerRequestDTO request)
         {
             return new ITWorker()
             {
