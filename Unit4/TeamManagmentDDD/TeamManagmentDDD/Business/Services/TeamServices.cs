@@ -75,6 +75,17 @@ namespace Business.Services
             return team != null ? team.Technicians : null;
         }
 
+        public void UpdateTeam(Team team)
+        {
+            _teamRepository.UpdateTeam(team);
+        }
+
+        public Team GetTeamById(int id) 
+        {
+            return _teamRepository.GetTeamById(id);
+        }
+
+        #region
         private Team GenerateTeamEntity(CreateTeamRequestDTO request)
         {
             return new Team()
@@ -103,5 +114,6 @@ namespace Business.Services
                 Error = false
             };
         }
+        #endregion
     }
 }

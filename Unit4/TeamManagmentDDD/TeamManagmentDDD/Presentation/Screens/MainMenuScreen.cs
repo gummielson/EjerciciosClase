@@ -12,7 +12,7 @@ namespace Presentation.Screens
         private readonly IITWorkerController _iITWorkerController;
         private readonly ITeamController _teamController;
         private readonly ITaskController _taskController;
-        private readonly ITasksByTeamController _tasksByTeamController;
+        private readonly IMultiEntityController _tasksByTeamController;
 
         private readonly Option1Screen _option1Screen;
         private readonly Option2Screen _option2Screen;
@@ -23,7 +23,7 @@ namespace Presentation.Screens
         private readonly Option7Screen _option7Screen;
         #endregion
 
-        public MainMenuScreen(ITWorkerController iTWorkerController, TeamController teamController, TaskController taskController, TasksByTeamController tasksByTeamController)
+        public MainMenuScreen(ITWorkerController iTWorkerController, TeamController teamController, TaskController taskController, MultiEntityController tasksByTeamController)
         {
             _teamController = teamController;
             _taskController = taskController;

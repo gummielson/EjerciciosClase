@@ -11,5 +11,7 @@ namespace Business.Services
         List<GetTeamsResponseDTO> GetTeams();
         GetTeamMembersByTeamResponseDTO GetTeamsMembersByTeam(GetTeamMembersByTeamRequestDTO getTeamMembersByTeamRequestDTO);
         List<ITWorker> GetITWorkersByTeam(GetTaskByTeamRequestDTO request);
+        void UpdateTeam(Team team);
+        Team GetTeamById(int id);
     }
 }

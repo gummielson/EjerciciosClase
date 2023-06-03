@@ -14,6 +14,8 @@ namespace Domain.Entities
 
         public Level ITLevel { get; set; } = new Level();
 
+        public Rol WorkerRol { get; set; } = Rol.Worker;
+
         #region validations
 
         /// <summary>

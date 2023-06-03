@@ -33,14 +33,14 @@ namespace Presentation
             #endregion
 
             #region services dependency
-            container.RegisterType<ITasksByTeamController, TasksByTeamController>();
+            container.RegisterType<IMultiEntityController, MultiEntityController>();
             container.RegisterType<ITaskServices, TaskServices>();
             container.RegisterType<ITeamServices, TeamServices>();
             container.RegisterType<IITWorkerServices, ITWorkerServices>();
             #endregion
 
             #region controllers dependency
-            container.RegisterType<ITasksByTeamController, TasksByTeamController>();
+            container.RegisterType<IMultiEntityController, MultiEntityController>();
             container.RegisterType<ITaskController, TaskController>();
             container.RegisterType<ITeamController, TeamController>();
             container.RegisterType<IITWorkerController, ITWorkerController>();

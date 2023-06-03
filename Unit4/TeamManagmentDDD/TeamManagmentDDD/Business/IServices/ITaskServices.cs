@@ -10,5 +10,6 @@ namespace Business.Services
         CreateTaskResponseDTO CreateTask(CreateTaskRequestDTO request);
         GetUnassignedTaskResponseDTO GetUnassignedTasks();
         List<TaskEntity> GetAssignedTasks(List<ITWorker> iTWorkers);
+        void UpdateTask(TaskEntity task);
     }
 }

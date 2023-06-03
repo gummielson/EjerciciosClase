@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Remoting.Activation;
 using Domain.Entities;
 using static Infrastructure.Utils.Enums.Enums;
@@ -20,7 +21,29 @@ namespace Domain.Repositories
             workers.Add(worker);
         }
 
-        public void CreatingMockWorkerData()
+        public ITWorker GetITWorkerById(int id)
+        {
+            int index = workers.FindIndex(worker => worker.Id == id);
+
+            return index != -1 ? workers[index] : null;
+        }
+
+        public void UpdateWorker(ITWorker workerEntry)
+        {
+            int index = workers.FindIndex(worker => worker.Id == workerEntry.Id);
+
+            if(index != -1) 
+            {
+                workers[index] = workerEntry;
+            }
+        }
+
+        public List<ITWorker> GetAvailableWorkers(List<int> idWorkers)
+        {
+            return workers.Where(worker => idWorkers.Contains(worker.Id) && worker.WorkerRol == Rol.Worker).ToList();
+        }
+
+        private void CreatingMockWorkerData()
         {
             workers = new List<ITWorker>()
             {

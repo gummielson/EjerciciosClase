@@ -22,6 +22,11 @@ namespace Infrastructure.Utils.Enums
             Done
         }
 
-
+        public enum Rol
+        {
+            Worker,
+            Manager,
+            Admin
+        }
     }
 }

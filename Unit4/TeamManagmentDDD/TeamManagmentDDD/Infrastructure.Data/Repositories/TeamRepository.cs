@@ -23,7 +23,24 @@ namespace Infrastructure.Data.Repositories
             return teams;
         }
 
-        public void CreatingMockTeamData()
+        public Team GetTeamById(int id) 
+        {
+            int index = teams.FindIndex(worker => worker.Id == id);
+
+            return index != -1 ? teams[index] : null;
+        }
+
+        public void UpdateTeam(Team teamEntry) 
+        {
+            int index = teams.FindIndex(worker => worker.Id == teamEntry.Id);
+
+            if (index != -1)
+            {
+                teams[index] = teamEntry;
+            }
+        }
+
+        private void CreatingMockTeamData()
         {
             teams = new List<Team>()
             {

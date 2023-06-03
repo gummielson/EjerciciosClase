@@ -3,8 +3,9 @@ using Business.DTO.ResponseDTO;
 
 namespace Business.Services
 {
-    public interface ITasksByTeamServices
+    public interface IMultiEntityServices
     {
         GetTaskByTeamResponseDTO GetTasksByTeam(GetTaskByTeamRequestDTO getTasksByTeamRequestDTO);
+        void AssignITWorkerToTeam(AssignITWorkerToTeamRequestDTO assignITWorkerToTeamRequestDTO);
     }
 }

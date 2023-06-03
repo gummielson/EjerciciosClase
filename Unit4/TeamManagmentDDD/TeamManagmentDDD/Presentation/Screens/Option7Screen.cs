@@ -6,9 +6,9 @@ namespace Presentation.Screens
 {
     public class Option7Screen
     {
-        private readonly ITasksByTeamController _taskByTeamController;
+        private readonly IMultiEntityController _taskByTeamController;
 
-        public Option7Screen(TasksByTeamController tasksByTeamController)
+        public Option7Screen(MultiEntityController tasksByTeamController)
         {
             _taskByTeamController = tasksByTeamController;
         }

@@ -3,7 +3,7 @@ using Business.DTO.ResponseDTO;
 
 namespace Business.Controllers
 {
-    public interface ITasksByTeamController
+    public interface IMultiEntityController
     {
         GetTaskByTeamResponseDTO GetTasksByTeam(GetTaskByTeamRequestDTO getTasksByTeamRequestDTO);
     }

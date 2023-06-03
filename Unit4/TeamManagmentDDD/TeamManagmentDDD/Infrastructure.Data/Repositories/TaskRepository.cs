@@ -42,6 +42,16 @@ namespace Infrastructure.Data.Repositories
             return taskEntities;
         }
 
+        public void UpdateTask(TaskEntity taskEntry) 
+        {
+            int index = tasks.FindIndex(worker => worker.Id == taskEntry.Id);
+
+            if (index != -1)
+            {
+                tasks[index] = taskEntry;
+            }
+        }
+
         private void CreatingMockTaskData()
         {
             tasks = new List<TaskEntity>()

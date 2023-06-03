@@ -7,6 +7,7 @@ namespace Infrastructure.Data.Repositories
     {
         void CreateTeam(Team team);
         List<Team> GetTeams();
-        void CreatingMockTeamData();
+        void UpdateTeam(Team teamEntry);
+        Team GetTeamById(int id);
     }
 }

@@ -11,12 +11,12 @@ namespace Business.Services
     public class ITWorkerServices : IITWorkerServices
     {
         private readonly ValidateDataAnnotations _validateDataAnnotations;
-        private readonly IITWorkerRepository _teamManagmentRepositoriy;
+        private readonly IITWorkerRepository _iTWorkerRepository;
 
         public ITWorkerServices(ITWorkerRepository iTWorkerRepositoriy) //ValidateDataAnnotations validateDataAnnotations, ) 
         {
             _validateDataAnnotations = new ValidateDataAnnotations();
-            _teamManagmentRepositoriy = iTWorkerRepositoriy;
+            _iTWorkerRepository = iTWorkerRepositoriy;
         }
 
         public CreateWorkerResponseDTO CreateWorker(CreateWorkerRequestDTO request)
@@ -28,7 +28,7 @@ namespace Business.Services
                 ITWorker worker = GenerateITWorkerEntity(request);
                 _validateDataAnnotations.ValidateObject(worker);
                 worker.CanBeSenior();
-                _teamManagmentRepositoriy.CreateWorker(worker);
+                _iTWorkerRepository.CreateWorker(worker);
                 response.ResultMessage = "\nThe worker was loaded properly";
             }
             catch (Exception ex)
@@ -37,6 +37,21 @@ namespace Business.Services
             }
 
             return response;
+        }
+
+        public void UpdateITWorker(ITWorker worker) 
+        {
+            _iTWorkerRepository.UpdateWorker(worker);
+        }
+
+        public void GetAvailableWorkers(List<int> idWorkers)
+        {
+            _iTWorkerRepository.GetAvailableWorkers(idWorkers);
+        }
+
+        public ITWorker GetITWorkerById(int id)
+        {
+            return _iTWorkerRepository.GetITWorkerById(id);
         }
 
         private ITWorker GenerateITWorkerEntity(CreateWorkerRequestDTO request)

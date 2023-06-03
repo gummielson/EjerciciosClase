@@ -42,8 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IControllers\ITasksByTeamController.cs" />
-    <Compile Include="Controllers\TasksByTeamController.cs" />
+    <Compile Include="DTO\RequestDTO\AssignITWorkerToTeamRequestDTO.cs" />
+    <Compile Include="IControllers\IMultiEntityController.cs" />
+    <Compile Include="Controllers\MultiEntityController.cs" />
     <Compile Include="DTO\RequestDTO\GetTaskByTeamRequestDTO.cs" />
     <Compile Include="DTO\RequestDTO\GetTeamMembersByTeamRequestDTO.cs" />
     <Compile Include="DTO\ResponseDTO\GetTaskByTeamResponseDTO.cs" />
@@ -66,9 +67,9 @@
     <Compile Include="IServices\IITWorkerServices.cs" />
     <Compile Include="IServices\ITaskServices.cs" />
     <Compile Include="IServices\ITeamServices.cs" />
-    <Compile Include="IServices\ITasksByTeamServices.cs" />
+    <Compile Include="IServices\IMultiEntityServices.cs" />
     <Compile Include="Services\ITWorkerServices.cs" />
-    <Compile Include="Services\TasksByTeamServices.cs" />
+    <Compile Include="Services\MultiEntityServices.cs" />
     <Compile Include="Services\TaskServices.cs" />
     <Compile Include="Services\TeamServices.cs" />
   </ItemGroup>

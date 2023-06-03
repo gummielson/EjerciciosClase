@@ -48,6 +48,12 @@ namespace Business.Services
             return _taskRepositoriy.GetAssignedTasks(iTWorkers);
         }
 
+        public void UpdateTask(TaskEntity task)
+        {
+            _taskRepositoriy.UpdateTask(task);
+        }
+
+        #region private methods
         private TaskEntity GenerateTaskEntity(CreateTaskRequestDTO request)
         {
             return new TaskEntity()
@@ -69,5 +75,6 @@ namespace Business.Services
 
             return response;
         }
+        #endregion
     }
 }
