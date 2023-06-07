@@ -6,6 +6,7 @@ using Business.DTO.ResponseDTO;
 using Business.Validations;
 using Domain.Entities;
 using Infrastructure.Data.Repositories;
+using static Infrastructure.Utils.Enums.Enums;
 
 namespace Business.Services
 {
@@ -13,11 +14,13 @@ namespace Business.Services
     {
         private readonly ValidateDataAnnotations _validateDataAnnotations;
         private readonly ITeamRepository _teamRepository;
+        private readonly IITWorkerServices _workerServices;
 
-        public TeamServices(TeamRepository teamRepository, ValidateDataAnnotations validateDataAnnotations)
+        public TeamServices(ITeamRepository teamRepository, ValidateDataAnnotations validateDataAnnotations, IITWorkerServices workerServices)
         {
             _validateDataAnnotations = new ValidateDataAnnotations();
             _teamRepository = teamRepository;
+            _workerServices = workerServices;
         }
 
         public CreateTeamResponseDTO CreateTeam(CreateTeamRequestDTO request)
@@ -28,12 +31,13 @@ namespace Business.Services
             {
                 Team team = GenerateTeamEntity(request);
                 _validateDataAnnotations.ValidateObject(team);
+                ValidateIfTeamExists(_teamRepository.GetTeams(), team);
                 _teamRepository.CreateTeam(team);
                 response.ResultMessage = "\nThe team was loaded properly";
             }
             catch (Exception ex)
             {
-                response.ResultMessage = string.Concat("\nFailed to create the team.\n", ex.Message);
+                response.ResultMessage = $"\nFailed to create the worker.\n {ex.Message}";
             }
 
             return response;
@@ -85,7 +89,38 @@ namespace Business.Services
             return _teamRepository.GetTeamById(id);
         }
 
-        #region
+        public void AssignITWorkerToTeam(AssignITWorkerToTeamRequestDTO assignITWorkerToTeamRequestDTO)
+        {
+            ITWorker worker = _workerServices.GetITWorkerById(assignITWorkerToTeamRequestDTO.IdWorker);
+            Team team = GetTeamById(assignITWorkerToTeamRequestDTO.IdTeam);
+
+            if (assignITWorkerToTeamRequestDTO.Manager)
+            {
+                //ValidateAssignment(team);
+                AssignManagerToTeam(worker, team);
+            }
+            else
+            {
+                team.AddTechnician(worker);
+            }
+
+            UpdateTeam(team);
+        }
+
+        private void ValidateAssignment(ITWorker worker, Team team)
+        {
+            worker.CanBeManager();
+            team.HasAManager();
+        }
+
+        private void AssignManagerToTeam(ITWorker worker, Team team)
+        {
+            worker.ChangeRol(Rol.Manager);
+            team.Manager = worker;
+            _workerServices.UpdateITWorker(worker);
+        }
+
+        #region private methods
         private Team GenerateTeamEntity(CreateTeamRequestDTO request)
         {
             return new Team()
@@ -113,6 +148,14 @@ namespace Business.Services
                 TeamMembers = team.Technicians != null ? team.Technicians.Select(worker => $"{worker.Name} {worker.Surname}").ToList() : new List<string>(),
                 Error = false
             };
+        }
+
+        private void ValidateIfTeamExists(List<Team> teamList, Team team)
+        {
+            if(teamList.Where(team1 => team1.Name == team.Name).Any()) 
+            {
+                throw new Exception("The name of the entered team is already used.");
+            }
         }
         #endregion
     }

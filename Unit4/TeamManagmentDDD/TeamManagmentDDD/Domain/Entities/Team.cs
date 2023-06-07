@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static Infrastructure.Utils.Enums.Enums;
 
 namespace Domain.Entities
 {
@@ -26,5 +24,30 @@ namespace Domain.Entities
         public List<ITWorker> Technicians { get; set; } = new List<ITWorker>();
 
         public static int count = 0;
+
+        public void AssignManager(ITWorker worker)
+        {
+            if(worker.ITLevel == Level.Senior)
+            {
+                Manager = worker;
+            }
+            else
+            {
+                throw new Exception("The selected worker can´t be manager");
+            }
+        }
+
+        public void AddTechnician(ITWorker worker) 
+        {
+            Technicians.Add(worker);
+        }
+
+        public void HasAManager()
+        {
+            if(Manager != null) 
+            {
+                throw new Exception("Team already has a manager");
+            }
+        }
     }
 }

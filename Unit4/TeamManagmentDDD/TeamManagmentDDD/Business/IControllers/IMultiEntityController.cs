@@ -6,5 +6,6 @@ namespace Business.Controllers
     public interface IMultiEntityController
     {
         GetTaskByTeamResponseDTO GetTasksByTeam(GetTaskByTeamRequestDTO getTasksByTeamRequestDTO);
+        void AssignITWorkerToTeam(AssignITWorkerToTeamRequestDTO assignITWorkerToTeamRequestDTO);
     }
 }

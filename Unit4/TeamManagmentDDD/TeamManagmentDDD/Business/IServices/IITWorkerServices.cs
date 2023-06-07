@@ -9,7 +9,8 @@ namespace Business.Services
     {
         CreateWorkerResponseDTO CreateWorker(CreateWorkerRequestDTO request);
         void UpdateITWorker(ITWorker worker);
-        void GetAvailableWorkers(List<int> idWorkers);
+        List<GetWorkersResponseDTO> GetWorkers();
+        //List<GetWorkersResponseDTO> GetAvaiableWorkers(List<ITWorker> workers);
         ITWorker GetITWorkerById(int id);
     }
 }

@@ -14,7 +14,9 @@ namespace Domain.Entities
 
         public Level ITLevel { get; set; } = new Level();
 
-        public Rol WorkerRol { get; set; } = Rol.Worker;
+        public Rol WorkerRol { get; set; } = new Rol();
+
+        public int IdTask { get; set; } = -1;
 
         #region validations
 
@@ -24,10 +26,23 @@ namespace Domain.Entities
         /// <exception cref="Exception"></exception>
         public void CanBeSenior()
         {
-            if(YearsOfExperience >= 5 && ITLevel == Level.Senior)
+            if(YearsOfExperience < 5 && ITLevel == Level.Senior)
             {
                 throw new Exception("This worker can't be senior because of his years of experience are less than 5.");
             }
+        }
+
+        public void CanBeManager()
+        {
+            if (ITLevel != Level.Senior && WorkerRol == Rol.Manager)
+            {
+                throw new Exception("This worker can't be manager because of his IT level.");
+            }
+        }
+
+        public void ChangeRol(Rol rol) 
+        {
+            WorkerRol = rol;
         }
         #endregion
     }

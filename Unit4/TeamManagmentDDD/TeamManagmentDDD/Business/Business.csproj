@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\RequestDTO\AssignITWorkerToTeamRequestDTO.cs" />
+    <Compile Include="DTO\ResponseDTO\GetWorkersResponseDTO.cs" />
     <Compile Include="IControllers\IMultiEntityController.cs" />
     <Compile Include="Controllers\MultiEntityController.cs" />
     <Compile Include="DTO\RequestDTO\GetTaskByTeamRequestDTO.cs" />

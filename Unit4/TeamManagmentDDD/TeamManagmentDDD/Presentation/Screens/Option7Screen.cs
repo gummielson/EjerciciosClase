@@ -6,11 +6,11 @@ namespace Presentation.Screens
 {
     public class Option7Screen
     {
-        private readonly IMultiEntityController _taskByTeamController;
+        private readonly IMultiEntityController _multiEntityController;
 
-        public Option7Screen(MultiEntityController tasksByTeamController)
+        public Option7Screen(MultiEntityController multiEntityController)
         {
-            _taskByTeamController = tasksByTeamController;
+            _multiEntityController = multiEntityController;
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Presentation.Screens
             GetTaskByTeamRequestDTO taskDTO = new GetTaskByTeamRequestDTO();
             taskDTO.TeamName = team;
 
-            Console.WriteLine(_taskByTeamController.GetTasksByTeam(taskDTO).ToString());
+            Console.WriteLine(_multiEntityController.GetTasksByTeam(taskDTO).ToString());
         }
     }
 }

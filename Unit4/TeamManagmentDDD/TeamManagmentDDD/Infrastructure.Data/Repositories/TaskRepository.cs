@@ -20,27 +20,27 @@ namespace Infrastructure.Data.Repositories
             tasks.Add(task);
         }
 
-        public List<TaskEntity> GetUnassignedTasks() 
-        {
-            return tasks.Where(task => task.IdWorker == 0).ToList();
-        }
+        //public List<TaskEntity> GetUnassignedTasks() 
+        //{
+        //    return tasks.Where(task => task.IdWorker == 0).ToList();
+        //}
 
-        public List<TaskEntity> GetAssignedTasks(List<ITWorker> iTWorkers)
-        {
-            List<TaskEntity> taskEntities = new List<TaskEntity>();
+        //public List<TaskEntity> GetAssignedTasks(List<ITWorker> iTWorkers)
+        //{
+        //    List<TaskEntity> taskEntities = new List<TaskEntity>();
 
-            foreach (ITWorker worker in iTWorkers)
-            {
-                TaskEntity task = tasks.FirstOrDefault(t => t.IdWorker == worker.Id);
+        //    foreach (ITWorker worker in iTWorkers)
+        //    {
+        //        TaskEntity task = tasks.FirstOrDefault(t => t.IdWorker == worker.Id);
 
-                if(task != null) 
-                {
-                    taskEntities.Add(task);
-                }
-            }
+        //        if(task != null) 
+        //        {
+        //            taskEntities.Add(task);
+        //        }
+        //    }
 
-            return taskEntities;
-        }
+        //    return taskEntities;
+        //}
 
         public void UpdateTask(TaskEntity taskEntry) 
         {

@@ -13,7 +13,7 @@ namespace Business.Services
         private readonly ValidateDataAnnotations _validateDataAnnotations;
         private readonly ITaskRepository _taskRepositoriy;
 
-        public TaskServices(TaskRepository taskRepository)//, ValidateDataAnnotations validateDataAnnotations) 
+        public TaskServices(ITaskRepository taskRepository)
         {
             _validateDataAnnotations = new ValidateDataAnnotations();
             _taskRepositoriy = taskRepository;
@@ -40,12 +40,12 @@ namespace Business.Services
 
         public GetUnassignedTaskResponseDTO GetUnassignedTasks()
         {
-            return TaskEntityToResponse(_taskRepositoriy.GetUnassignedTasks());
+            return null; // TaskEntityToResponse(_taskRepositoriy.GetUnassignedTasks());
         }
 
         public List<TaskEntity> GetAssignedTasks(List<ITWorker> iTWorkers)
         {
-            return _taskRepositoriy.GetAssignedTasks(iTWorkers);
+            return null; //_taskRepositoriy.GetAssignedTasks(iTWorkers);
         }
 
         public void UpdateTask(TaskEntity task)

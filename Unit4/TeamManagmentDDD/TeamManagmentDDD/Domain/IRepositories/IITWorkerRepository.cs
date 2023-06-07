@@ -7,7 +7,7 @@ namespace Domain.Repositories
     {
         void CreateWorker(ITWorker worker);
         void UpdateWorker(ITWorker workerEntry);
-        List<ITWorker> GetAvailableWorkers(List<int> idWorkers);
+        List<ITWorker> GetWorkers();
         ITWorker GetITWorkerById(int id);
     }
 }

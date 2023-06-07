@@ -6,12 +6,6 @@ namespace Domain.Entities
 {
     public class TaskEntity
     {
-        public TaskEntity()
-        {
-            Id = count++;
-        }
-
-        [Key]
         [Required]
         public int Id { get; set; }
 
@@ -23,8 +17,9 @@ namespace Domain.Entities
 
         public Status TaskStatus { get; set; } = Status.ToDo;
 
-        public int IdWorker { get; set; }
-
-        public static int count = 0;
+        public void ChangeStatus(Status status) 
+        {
+            TaskStatus = status;
+        }
     }
 }

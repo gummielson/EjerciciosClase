@@ -13,5 +13,6 @@ namespace Business.Services
         List<ITWorker> GetITWorkersByTeam(GetTaskByTeamRequestDTO request);
         void UpdateTeam(Team team);
         Team GetTeamById(int id);
+        void AssignITWorkerToTeam(AssignITWorkerToTeamRequestDTO assignITWorkerToTeamRequestDTO);
     }
 }

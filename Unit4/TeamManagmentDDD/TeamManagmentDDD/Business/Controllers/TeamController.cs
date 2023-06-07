@@ -31,5 +31,11 @@ namespace Business.Controllers
         {
             return _teamService.GetTeamsMembersByTeam(getTeamMembersByTeamRequestDTO);
         }
+
+        //PUT
+        public void AssignITWorkerToTeam(AssignITWorkerToTeamRequestDTO assignITWorkerToTeamRequestDTO)
+        {
+            _teamService.AssignITWorkerToTeam(assignITWorkerToTeamRequestDTO);
+        }
     }
 }

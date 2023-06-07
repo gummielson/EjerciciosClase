@@ -1,0 +1,123 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\TeamManagmentDDD.DomainTest\\TeamManagmentDDD.DomainTest.csproj": {}
+  },
+  "projects": {
+    "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Domain\\Domain.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Domain\\Domain.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Infrastructure\\Infrastructure.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Infrastructure\\Infrastructure.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Infrastructure\\Infrastructure.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\TeamManagmentDDD.DomainTest\\TeamManagmentDDD.DomainTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\TeamManagmentDDD.DomainTest\\TeamManagmentDDD.DomainTest.csproj",
+        "projectName": "TeamManagmentDDD.DomainTest",
+        "projectPath": "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\TeamManagmentDDD.DomainTest\\TeamManagmentDDD.DomainTest.csproj",
+        "packagesPath": "C:\\Users\\fjgumiel\\.nuget\\packages\\",
+        "outputPath": "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\TeamManagmentDDD.DomainTest\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\fjgumiel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Domain\\Domain.csproj"
+              },
+              "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\GIT\\Formacion\\Tema2\\Unit4\\TeamManagmentDDD\\TeamManagmentDDD\\Infrastructure\\Infrastructure.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.2.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "xunit.analyzers": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "xunit.extensibility.core": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.5, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-arm64": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

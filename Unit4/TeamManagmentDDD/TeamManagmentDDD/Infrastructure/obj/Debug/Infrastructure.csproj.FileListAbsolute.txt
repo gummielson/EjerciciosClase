@@ -4,3 +4,13 @@ C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\ob
 C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
 C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\obj\Debug\Infrastructure.dll
 C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\obj\Debug\Infrastructure.pdb
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\bin\Debug\xunit.abstractions.dll
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\bin\Debug\xunit.assert.dll
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\bin\Debug\xunit.core.dll
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\bin\Debug\xunit.execution.desktop.dll
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\bin\Debug\xunit.abstractions.xml
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\bin\Debug\xunit.assert.xml
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\bin\Debug\xunit.core.xml
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\bin\Debug\xunit.execution.desktop.xml
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\obj\Debug\Infrastructure.csproj.SuggestedBindingRedirects.cache
+C:\GIT\Formacion\Tema2\Unit4\TeamManagmentDDD\TeamManagmentDDD\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete

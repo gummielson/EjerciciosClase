@@ -1,4 +1,5 @@
-﻿using Business.DTO.RequestDTO;
+﻿using System.Collections.Generic;
+using Business.DTO.RequestDTO;
 using Business.DTO.ResponseDTO;
 using Business.Services;
 
@@ -17,6 +18,12 @@ namespace Business.Controllers
         public CreateWorkerResponseDTO CreateWorker(CreateWorkerRequestDTO createWorkerRequest)
         {
             return _iTWorkerService.CreateWorker(createWorkerRequest);
+        }
+
+        //GET
+        public List<GetWorkersResponseDTO> GetWorkers(int id)
+        {
+            return _iTWorkerService.GetWorkers();
         }
 
     }

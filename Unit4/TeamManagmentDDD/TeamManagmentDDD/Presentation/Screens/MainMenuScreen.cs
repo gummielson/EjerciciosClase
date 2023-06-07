@@ -21,23 +21,25 @@ namespace Presentation.Screens
         private readonly Option5Screen _option5Screen;
         private readonly Option6Screen _option6Screen;
         private readonly Option7Screen _option7Screen;
+        private readonly Option8Screen _option8Screen;
         #endregion
 
-        public MainMenuScreen(ITWorkerController iTWorkerController, TeamController teamController, TaskController taskController, MultiEntityController tasksByTeamController)
+        public MainMenuScreen(ITWorkerController iTWorkerController, TeamController teamController, TaskController taskController, MultiEntityController multiEntityController)
         {
             _teamController = teamController;
             _taskController = taskController;
             _iITWorkerController = iTWorkerController;
-            _tasksByTeamController = tasksByTeamController;
+            _tasksByTeamController = multiEntityController;
 
-            #region screens ctor
+            #region screens
             _option1Screen = new Option1Screen(iTWorkerController);
             _option2Screen = new Option2Screen(teamController);
             _option3Screen = new Option3Screen(taskController);
             _option4Screen = new Option4Screen(teamController);
             _option5Screen = new Option5Screen(teamController);
             _option6Screen = new Option6Screen(taskController);
-            _option7Screen = new Option7Screen(tasksByTeamController);
+            _option7Screen = new Option7Screen(multiEntityController);
+            _option8Screen = new Option8Screen(teamController, iTWorkerController);
             #endregion
         }
 
@@ -104,6 +106,9 @@ namespace Presentation.Screens
                     break;
                 case "7":
                     _option7Screen.Start();
+                    break;
+                case "8":
+                    _option8Screen.Start();
                     break;
                 case "12":
                     break;

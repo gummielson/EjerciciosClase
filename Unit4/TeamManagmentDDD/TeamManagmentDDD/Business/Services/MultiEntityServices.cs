@@ -24,7 +24,7 @@ namespace Business.Services
         {
             List<ITWorker> workers = _teamServices.GetITWorkersByTeam(getTasksByTeamRequestDTO);
 
-            return GenerateResponseDTO(workers, _taskServices.GetAssignedTasks(workers));
+            return null; // GenerateResponseDTO(workers, _taskServices.GetAssignedTasks(workers));
         }
 
         public void AssignITWorkerToTeam(AssignITWorkerToTeamRequestDTO assignITWorkerToTeamRequestDTO)
@@ -32,7 +32,7 @@ namespace Business.Services
             ITWorker worker = _workerServices.GetITWorkerById(assignITWorkerToTeamRequestDTO.IdWorker);
             Team team = _teamServices.GetTeamById(assignITWorkerToTeamRequestDTO.IdTeam);
 
-            if (assignITWorkerToTeamRequestDTO.Manager) 
+            if (assignITWorkerToTeamRequestDTO.Manager)
             {
                 AssignManagerToTeam(worker, team);
             }
@@ -56,23 +56,23 @@ namespace Business.Services
             _workerServices.UpdateITWorker(worker);
         }
 
-        private GetTaskByTeamResponseDTO GenerateResponseDTO(List<ITWorker> workers, List<TaskEntity> tasks)
-        {
-            GetTaskByTeamResponseDTO response = new GetTaskByTeamResponseDTO();
+        //private GetTaskByTeamResponseDTO GenerateResponseDTO(List<ITWorker> workers, List<TaskEntity> tasks)
+        //{
+        //    GetTaskByTeamResponseDTO response = new GetTaskByTeamResponseDTO();
 
-            foreach (var task in tasks)
-            {
-                var worker = workers.FirstOrDefault(w => w.Id == task.IdWorker);
-                if (task.IdWorker == worker.Id)
-                {
-                    response.IdITWorkers.Add(worker.Id);
-                    response.NamesITWorkers.Add(worker.Name);
-                    response.IdTasks.Add(task.Id);
-                    response.DescTasks.Add(task.Description);
-                }
-            }
+        //    foreach (var task in tasks)
+        //    {
+        //        var worker = workers.FirstOrDefault(w => w.Id == task.IdWorker);
+        //        if (task.IdWorker == worker.Id)
+        //        {
+        //            response.IdITWorkers.Add(worker.Id);
+        //            response.NamesITWorkers.Add(worker.Name);
+        //            response.IdTasks.Add(task.Id);
+        //            response.DescTasks.Add(task.Description);
+        //        }
+        //    }
 
-            return response;
-        }
+        //    return response;
+        //}
     }
 }

@@ -6,11 +6,6 @@ namespace Domain.Entities
 {
     public class Worker
     {
-        public Worker()
-        {
-            Id = count++;
-        }
-
         [Required]
         [Key]
         public int Id { get; set; }
@@ -30,8 +25,6 @@ namespace Domain.Entities
         public DateTime BirthDate { get; set; } = new DateTime();
 
         public DateTime LeavingDate { get; set; } = new DateTime();
-
-        public static int count = 0;
 
     }
 }

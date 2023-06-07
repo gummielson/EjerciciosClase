@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Activation;
 using Domain.Entities;
 using static Infrastructure.Utils.Enums.Enums;
 
@@ -38,9 +36,9 @@ namespace Domain.Repositories
             }
         }
 
-        public List<ITWorker> GetAvailableWorkers(List<int> idWorkers)
+        public List<ITWorker> GetWorkers()
         {
-            return workers.Where(worker => idWorkers.Contains(worker.Id) && worker.WorkerRol == Rol.Worker).ToList();
+            return workers;
         }
 
         private void CreatingMockWorkerData()
@@ -53,7 +51,11 @@ namespace Domain.Repositories
                     Surname = "Lovelace",
                     BirthDate = new DateTime(1990, 5, 15),
                     YearsOfExperience = 7,
-                    ITLevel = Level.Senior
+                    ITLevel = Level.Senior,
+                    TechKnowledges = new List<string>()
+                    {
+                        "Python", "Java"
+                    }
                 },
 
                 new ITWorker()
@@ -62,7 +64,11 @@ namespace Domain.Repositories
                     Surname = "Turing",
                     BirthDate = new DateTime(1990, 5, 15),
                     YearsOfExperience = 7,
-                    ITLevel = Level.Senior
+                    ITLevel = Level.Senior,
+                    TechKnowledges = new List<string>()
+                    {
+                        "Angular"
+                    }
                 },
 
                 new ITWorker()
@@ -71,7 +77,11 @@ namespace Domain.Repositories
                     Surname = "Torvalds",
                     BirthDate = new DateTime(1990, 5, 15),
                     YearsOfExperience = 7,
-                    ITLevel = Level.Senior
+                    ITLevel = Level.Senior,
+                    TechKnowledges = new List<string>()
+                    {
+                        ".NET", "Java"
+                    }
                 },
 
                 new ITWorker()
@@ -80,7 +90,11 @@ namespace Domain.Repositories
                     Surname = "Gates",
                     BirthDate = new DateTime(1990, 5, 15),
                     YearsOfExperience = 7,
-                    ITLevel = Level.Senior
+                    ITLevel = Level.Senior,
+                    TechKnowledges = new List<string>()
+                    {
+                        "Android", "React"
+                    }
                 }
             };
         }
