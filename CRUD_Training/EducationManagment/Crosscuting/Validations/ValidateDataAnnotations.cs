@@ -11,7 +11,7 @@ namespace Crosscuting.Validations
         {
             if (!Validate(obj, out ICollection<ValidationResult> results))
             {
-                throw new Exception(string.Join("\n", results.Select(o => o.ErrorMessage)));
+                throw new ValidationException(string.Join("\n", results.Select(o => o.ErrorMessage)));
             }
         }
 

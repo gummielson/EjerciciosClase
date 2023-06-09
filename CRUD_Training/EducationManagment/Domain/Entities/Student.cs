@@ -28,22 +28,22 @@ namespace Domain.Entities
             switch (Age) 
             { 
                 case int n when n >= 6 && n <= 12:
-                    CheckCourse(Classroom.Area, AreaEnum.Primary);
+                    CheckCourse(AreaEnum.Primary);
                     break;
                 case int n when n > 12 && n <= 16:
-                    CheckCourse(Classroom.Area, AreaEnum.Secundary);
+                    CheckCourse(AreaEnum.Secundary);
                     break;
                 case int n when n > 16 && n <= 22:
-                    CheckCourse(Classroom.Area, AreaEnum.Tertiary);
+                    CheckCourse(AreaEnum.Tertiary);
                     break;
             }
         }
 
-        private void CheckCourse(AreaEnum thisArea, AreaEnum area)
+        private void CheckCourse(AreaEnum area)
         {
-            if (thisArea != area)
+            if (Classroom.Area != area)
             {
-                throw new Exception("The age of the student doesn´t coincede with his area");
+                throw new ValidationException("The age of the student doesn´t coincede with his area");
             }
         }
     }

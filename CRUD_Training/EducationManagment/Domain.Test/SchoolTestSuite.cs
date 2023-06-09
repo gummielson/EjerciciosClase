@@ -1,11 +1,11 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations;
 using Crosscuting.Validations;
 using Domain.Entities;
 using Xunit;
 
 namespace Domain.Test
 {
-    public class SchoolTest
+    public class SchoolTestSuite
     {
         /// <summary>
         /// Initializes an instance of the School class with the specified name and country.
@@ -13,7 +13,7 @@ namespace Domain.Test
         /// <param name="name">The name of the school.</param>
         /// <param name="country">Country of teh school.</param>
         /// <returns>An instance of the School class with the specified name and school.</returns>
-        public School initializeSchool(string name, string country)
+        public School InitializeSchool(string name, string country)
         {
             return new School
             {
@@ -26,40 +26,40 @@ namespace Domain.Test
         public void Name_ContainNumericChars_ThrowException()
         {
             // Arrange
-            School school = initializeSchool("3435", "Spain");
+            School school = InitializeSchool("3435", "Spain");
 
             // Act and Assert
-            Assert.Throws<Exception>(() => school.ValidateObject());
+            Assert.Throws<ValidationException>(() => school.ValidateObject());
         }
 
         [Fact]
         public void Name_CantHaveMoreThan30Chars_ThrowException()
         {
             // Arrange
-            School school = initializeSchool("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", "Spain");
+            School school = InitializeSchool("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", "Spain");
 
             // Act and Assert
-            Assert.Throws<Exception>(() => school.ValidateObject());
+            Assert.Throws<ValidationException>(() => school.ValidateObject());
         }
 
         [Fact]
         public void Country_ContainNumericChars_ThrowException()
         {
             // Arrange
-            School school = initializeSchool("Marianistas", "4354");
+            School school = InitializeSchool("Marianistas", "4354");
 
             // Act and Assert
-            Assert.Throws<Exception>(() => school.ValidateObject());
+            Assert.Throws<ValidationException>(() => school.ValidateObject());
         }
 
         [Fact]
         public void Country_CantHaveMoreThan30Chars_ThrowException()
         {
             // Arrange
-            School school = initializeSchool("Marianistas", "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+            School school = InitializeSchool("Marianistas", "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 
             // Act and Assert
-            Assert.Throws<Exception>(() => school.ValidateObject());
+            Assert.Throws<ValidationException>(() => school.ValidateObject());
         }
     }
 }

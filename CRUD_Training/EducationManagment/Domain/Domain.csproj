@@ -46,7 +46,12 @@
     <Compile Include="Entities\School.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Enums\Enums.cs" />
+    <Compile Include="IRepositories\IRepository.cs" />
+    <Compile Include="IServices\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Attributes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
