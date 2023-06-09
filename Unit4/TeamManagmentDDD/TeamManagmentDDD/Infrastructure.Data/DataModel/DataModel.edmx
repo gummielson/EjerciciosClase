@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TeamManagmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ITWorkers">
+          <Key>
+            <PropertyRef Name="IdWorker" />
+          </Key>
+          <Property Name="IdWorker" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="LeavingDate" Type="datetime" />
+          <Property Name="Experience" Type="int" Nullable="false" />
+          <Property Name="LevelEnum" Type="int" Nullable="false" />
+          <Property Name="RolEnum" Type="int" Nullable="false" />
+          <Property Name="IdTask" Type="int" />
+          <Property Name="IdTeam" Type="int" />
+          <Property Name="Manager" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TeamManagment.dbo.ITWorkersTechnologies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ITWorkersTechnologies">
+          <Key>
+            <PropertyRef Name="IdITWorker" />
+            <PropertyRef Name="IdTechnology" />
+          </Key>
+          <Property Name="IdITWorker" Type="int" Nullable="false" />
+          <Property Name="IdTechnology" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="IdTechnology" Type="int" Nullable="false" />
+          <Property Name="StatusEnum" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="IdTeam" />
+          </Key>
+          <Property Name="IdTeam" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Technologies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ITWorkers_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="ITWorkers" Type="Self.ITWorkers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ITWorkers">
+              <PropertyRef Name="IdTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ITWorkers_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="ITWorkers" Type="Self.ITWorkers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="IdTeam" />
+            </Principal>
+            <Dependent Role="ITWorkers">
+              <PropertyRef Name="IdTeam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ITWorkersTechnologies_ITWorkers">
+          <End Role="ITWorkers" Type="Self.ITWorkers" Multiplicity="1" />
+          <End Role="ITWorkersTechnologies" Type="Self.ITWorkersTechnologies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITWorkers">
+              <PropertyRef Name="IdWorker" />
+            </Principal>
+            <Dependent Role="ITWorkersTechnologies">
+              <PropertyRef Name="IdITWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ITWorkersTechnologies_Technologies1">
+          <End Role="Technologies" Type="Self.Technologies" Multiplicity="1" />
+          <End Role="ITWorkersTechnologies" Type="Self.ITWorkersTechnologies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technologies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ITWorkersTechnologies">
+              <PropertyRef Name="IdTechnology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Technologies">
+          <End Role="Technologies" Type="Self.Technologies" Multiplicity="1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technologies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="IdTechnology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Team1" Type="Self.Team" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="IdTeam" />
+            </Principal>
+            <Dependent Role="Team1">
+              <PropertyRef Name="IdTeam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TeamManagmentModelStoreContainer">
+          <EntitySet Name="ITWorkers" EntityType="Self.ITWorkers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Technologies" EntityType="Self.Technologies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ITWorkersTechnologies" EntityType="Self.ITWorkersTechnologies" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ITWorkersTechnologies].[IdITWorker] AS [IdITWorker], 
+    [ITWorkersTechnologies].[IdTechnology] AS [IdTechnology]
+    FROM [dbo].[ITWorkersTechnologies] AS [ITWorkersTechnologies]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ITWorkers_Task" Association="Self.FK_ITWorkers_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="ITWorkers" EntitySet="ITWorkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ITWorkers_Team" Association="Self.FK_ITWorkers_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="ITWorkers" EntitySet="ITWorkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ITWorkersTechnologies_ITWorkers" Association="Self.FK_ITWorkersTechnologies_ITWorkers">
+            <End Role="ITWorkers" EntitySet="ITWorkers" />
+            <End Role="ITWorkersTechnologies" EntitySet="ITWorkersTechnologies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ITWorkersTechnologies_Technologies1" Association="Self.FK_ITWorkersTechnologies_Technologies1">
+            <End Role="Technologies" EntitySet="Technologies" />
+            <End Role="ITWorkersTechnologies" EntitySet="ITWorkersTechnologies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Technologies" Association="Self.FK_Task_Technologies">
+            <End Role="Technologies" EntitySet="Technologies" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Team" Association="Self.FK_Team_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Team1" EntitySet="Team" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TeamManagmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ITWorkers">
+          <Key>
+            <PropertyRef Name="IdWorker" />
+          </Key>
+          <Property Name="IdWorker" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LeavingDate" Type="DateTime" Precision="3" />
+          <Property Name="Experience" Type="Int32" Nullable="false" />
+          <Property Name="LevelEnum" Type="Int32" Nullable="false" />
+          <Property Name="RolEnum" Type="Int32" Nullable="false" />
+          <Property Name="IdTask" Type="Int32" />
+          <Property Name="IdTeam" Type="Int32" />
+          <Property Name="Manager" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_ITWorkers_Task" FromRole="ITWorkers" ToRole="Task" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_ITWorkers_Team" FromRole="ITWorkers" ToRole="Team" />
+          <NavigationProperty Name="Technologies" Relationship="Self.ITWorkersTechnologies" FromRole="ITWorkers" ToRole="Technologies" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdTechnology" Type="Int32" Nullable="false" />
+          <Property Name="StatusEnum" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ITWorkers" Relationship="Self.FK_ITWorkers_Task" FromRole="Task" ToRole="ITWorkers" />
+          <NavigationProperty Name="Technologies" Relationship="Self.FK_Task_Technologies" FromRole="Task" ToRole="Technologies" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="IdTeam" />
+          </Key>
+          <Property Name="IdTeam" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ITWorkers" Relationship="Self.FK_ITWorkers_Team" FromRole="Team" ToRole="ITWorkers" />
+          <NavigationProperty Name="Team1" Relationship="Self.FK_Team_Team" FromRole="Team" ToRole="Team1" />
+          <NavigationProperty Name="Team2" Relationship="Self.FK_Team_Team" FromRole="Team1" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Technologies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_Task_Technologies" FromRole="Technologies" ToRole="Task" />
+          <NavigationProperty Name="ITWorkers" Relationship="Self.ITWorkersTechnologies" FromRole="Technologies" ToRole="ITWorkers" />
+        </EntityType>
+        <Association Name="FK_ITWorkers_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="ITWorkers" Type="Self.ITWorkers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ITWorkers">
+              <PropertyRef Name="IdTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ITWorkers_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="ITWorkers" Type="Self.ITWorkers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="IdTeam" />
+            </Principal>
+            <Dependent Role="ITWorkers">
+              <PropertyRef Name="IdTeam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Technologies">
+          <End Role="Technologies" Type="Self.Technologies" Multiplicity="1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technologies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="IdTechnology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Team1" Type="Self.Team" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="IdTeam" />
+            </Principal>
+            <Dependent Role="Team1">
+              <PropertyRef Name="IdTeam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ITWorkersTechnologies">
+          <End Role="ITWorkers" Type="Self.ITWorkers" Multiplicity="*" />
+          <End Role="Technologies" Type="Self.Technologies" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TeamManagmentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ITWorkers" EntityType="Self.ITWorkers" />
+          <EntitySet Name="Task" EntityType="Self.Task" />
+          <EntitySet Name="Team" EntityType="Self.Team" />
+          <EntitySet Name="Technologies" EntityType="Self.Technologies" />
+          <AssociationSet Name="FK_ITWorkers_Task" Association="Self.FK_ITWorkers_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="ITWorkers" EntitySet="ITWorkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ITWorkers_Team" Association="Self.FK_ITWorkers_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="ITWorkers" EntitySet="ITWorkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Technologies" Association="Self.FK_Task_Technologies">
+            <End Role="Technologies" EntitySet="Technologies" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Team" Association="Self.FK_Team_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Team1" EntitySet="Team" />
+          </AssociationSet>
+          <AssociationSet Name="ITWorkersTechnologies" Association="Self.ITWorkersTechnologies">
+            <End Role="ITWorkers" EntitySet="ITWorkers" />
+            <End Role="Technologies" EntitySet="Technologies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TeamManagmentModelStoreContainer" CdmEntityContainer="TeamManagmentEntities">
+          <EntitySetMapping Name="ITWorkers">
+            <EntityTypeMapping TypeName="TeamManagmentModel.ITWorkers">
+              <MappingFragment StoreEntitySet="ITWorkers">
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="LeavingDate" ColumnName="LeavingDate" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="LevelEnum" ColumnName="LevelEnum" />
+                <ScalarProperty Name="RolEnum" ColumnName="RolEnum" />
+                <ScalarProperty Name="IdTask" ColumnName="IdTask" />
+                <ScalarProperty Name="IdTeam" ColumnName="IdTeam" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Task">
+            <EntityTypeMapping TypeName="TeamManagmentModel.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdTechnology" ColumnName="IdTechnology" />
+                <ScalarProperty Name="StatusEnum" ColumnName="StatusEnum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Team">
+            <EntityTypeMapping TypeName="TeamManagmentModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="IdTeam" ColumnName="IdTeam" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Technologies">
+            <EntityTypeMapping TypeName="TeamManagmentModel.Technologies">
+              <MappingFragment StoreEntitySet="Technologies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ITWorkersTechnologies" TypeName="TeamManagmentModel.ITWorkersTechnologies" StoreEntitySet="ITWorkersTechnologies">
+            <EndProperty Name="ITWorkers">
+              <ScalarProperty Name="IdWorker" ColumnName="IdITWorker" />
+            </EndProperty>
+            <EndProperty Name="Technologies">
+              <ScalarProperty Name="Id" ColumnName="IdTechnology" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

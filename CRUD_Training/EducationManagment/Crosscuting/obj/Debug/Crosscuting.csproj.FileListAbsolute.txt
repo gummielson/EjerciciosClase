@@ -1,0 +1,16 @@
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\bin\Debug\Crosscuting.dll
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\bin\Debug\Crosscuting.pdb
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\bin\Debug\xunit.abstractions.dll
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\bin\Debug\xunit.assert.dll
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\bin\Debug\xunit.core.dll
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\bin\Debug\xunit.execution.desktop.dll
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\bin\Debug\xunit.abstractions.xml
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\bin\Debug\xunit.assert.xml
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\bin\Debug\xunit.core.xml
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\bin\Debug\xunit.execution.desktop.xml
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\obj\Debug\Crosscuting.csproj.AssemblyReference.cache
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\obj\Debug\Crosscuting.csproj.SuggestedBindingRedirects.cache
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\obj\Debug\Crosscuting.csproj.CoreCompileInputs.cache
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\obj\Debug\Crosscuting.csproj.CopyComplete
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\obj\Debug\Crosscuting.dll
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Crosscuting\obj\Debug\Crosscuting.pdb

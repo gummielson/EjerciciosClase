@@ -1,0 +1,6 @@
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Domain\bin\Debug\Domain.dll
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Domain\bin\Debug\Domain.pdb
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Domain\obj\Debug\Domain.csproj.AssemblyReference.cache
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Domain\obj\Debug\Domain.csproj.CoreCompileInputs.cache
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Domain\obj\Debug\Domain.dll
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Domain\obj\Debug\Domain.pdb
