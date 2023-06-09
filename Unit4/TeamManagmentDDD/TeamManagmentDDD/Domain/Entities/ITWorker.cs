@@ -16,7 +16,7 @@ namespace Domain.Entities
 
         public Rol WorkerRol { get; set; } = new Rol();
 
-        public int IdTask { get; set; } = -1;
+        public int? IdTask { get; set; } = -1;
 
         #region validations
 

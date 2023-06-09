@@ -24,7 +24,7 @@ namespace Domain.Entities
         [AdultAge(ErrorMessage = "The entered birthdate does not correspond to someone of legal age")]
         public DateTime BirthDate { get; set; } = new DateTime();
 
-        public DateTime LeavingDate { get; set; } = new DateTime();
+        public DateTime? LeavingDate { get; set; } = new DateTime();
 
     }
 }

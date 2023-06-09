@@ -1,102 +1,119 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Linq;
+using System.Net.Sockets;
 using Domain.Entities;
+using Infrastructure.Data.DataModel;
 using static Infrastructure.Utils.Enums.Enums;
 
 namespace Domain.Repositories
 {
     public class ITWorkerRepository : IITWorkerRepository
     {
-        private List<ITWorker> workers;
+        private ITWorkers workers;
 
         public ITWorkerRepository()
         {
-            CreatingMockWorkerData();
+
         }
 
         public void CreateWorker(ITWorker worker)
         {
-            workers.Add(worker);
+            using(TeamManagmentEntities sqlconnection = new TeamManagmentEntities())
+            {
+                sqlconnection.ITWorkers.Add(worker);
+            }
         }
 
         public ITWorker GetITWorkerById(int id)
         {
-            int index = workers.FindIndex(worker => worker.Id == id);
-
-            return index != -1 ? workers[index] : null;
+            using (TeamManagmentEntities sqlconnection = new TeamManagmentEntities())
+            {
+                return DataEntityToEntity(sqlconnection.ITWorkers.Find(id));
+            }
         }
 
         public void UpdateWorker(ITWorker workerEntry)
         {
-            int index = workers.FindIndex(worker => worker.Id == workerEntry.Id);
-
-            if(index != -1) 
+            using (TeamManagmentEntities sqlconnection = new TeamManagmentEntities())
             {
-                workers[index] = workerEntry;
+                var worker = sqlconnection.ITWorkers.Find(workerEntry.Id);
+
             }
         }
 
         public List<ITWorker> GetWorkers()
         {
-            return workers;
+            using (TeamManagmentEntities sqlconnection = new TeamManagmentEntities())
+            {
+                return sqlconnection.ITWorkers
+                    .Select(worker => DataEntityToEntity(worker))
+                    .ToList();
+            };
         }
 
-        private void CreatingMockWorkerData()
+        public ITWorker DataEntityToEntity(ITWorkers worker)
         {
-            workers = new List<ITWorker>()
+            return new ITWorker
             {
-                new ITWorker()
-                {
-                    Name = "Ada",
-                    Surname = "Lovelace",
-                    BirthDate = new DateTime(1990, 5, 15),
-                    YearsOfExperience = 7,
-                    ITLevel = Level.Senior,
-                    TechKnowledges = new List<string>()
-                    {
-                        "Python", "Java"
-                    }
-                },
-
-                new ITWorker()
-                {
-                    Name = "Alan",
-                    Surname = "Turing",
-                    BirthDate = new DateTime(1990, 5, 15),
-                    YearsOfExperience = 7,
-                    ITLevel = Level.Senior,
-                    TechKnowledges = new List<string>()
-                    {
-                        "Angular"
-                    }
-                },
-
-                new ITWorker()
-                {
-                    Name = "Linus",
-                    Surname = "Torvalds",
-                    BirthDate = new DateTime(1990, 5, 15),
-                    YearsOfExperience = 7,
-                    ITLevel = Level.Senior,
-                    TechKnowledges = new List<string>()
-                    {
-                        ".NET", "Java"
-                    }
-                },
-
-                new ITWorker()
-                {
-                    Name = "Bill",
-                    Surname = "Gates",
-                    BirthDate = new DateTime(1990, 5, 15),
-                    YearsOfExperience = 7,
-                    ITLevel = Level.Senior,
-                    TechKnowledges = new List<string>()
-                    {
-                        "Android", "React"
-                    }
-                }
+                Id = worker.IdWorker,
+                Name = worker.Name,
+                Surname = worker.Name,
+                BirthDate = worker.BirthDate,
+                LeavingDate = worker.LeavingDate,
+                ITLevel = AssignEnumLevel(worker.LevelEnum),
+                IdTask = worker.IdTask,
+                TechKnowledges = worker.Technologies.Select(t => t.Name).ToList(),
+                WorkerRol = AssignEnumRol(worker.RolEnum),
+                YearsOfExperience = worker.Experience
             };
+        }
+
+        public ITWorkers EntityToDataEntity(ITWorker worker)
+        {
+            return new ITWorkers
+            {
+                IdWorker = worker.Id,
+                Name = $"{worker.Name} {worker.Surname}",
+                BirthDate = worker.BirthDate,
+                LeavingDate = worker.LeavingDate,
+                LevelEnum = ((int)worker.ITLevel),
+                IdTask = worker.IdTask,
+                Technologies = worker.TechKnowledges,
+                WorkerRol = AssignEnumRol(worker.RolEnum),
+                YearsOfExperience = worker.Experience
+            };
+        }
+
+        public Level AssignEnumLevel(int  level) 
+        {
+            switch(level) 
+            {
+                case 1:
+                    return Level.Junior;
+                case 2:
+                    return Level.Medium;
+                case 3:
+                    return Level.Senior;
+                default:
+                    throw new Exception("Invalid level");
+            }
+        }
+
+        public Rol AssignEnumRol(int rol)
+        {
+            switch (rol)
+            {
+                case 1:
+                    return Rol.Worker;
+                case 2:
+                    return Rol.Manager;
+                case 3:
+                    return Rol.Admin;
+                default:
+                    throw new Exception("Invalid rol");
+            }
         }
     }
 }

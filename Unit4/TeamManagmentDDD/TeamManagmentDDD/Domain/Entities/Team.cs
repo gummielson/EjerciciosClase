@@ -7,11 +7,6 @@ namespace Domain.Entities
 {
     public class Team
     {
-        public Team()
-        {
-            Id = count++;
-        }
-
         [Key]
         [Required]
         public int Id { get; set; }
@@ -22,8 +17,6 @@ namespace Domain.Entities
         public ITWorker Manager { get; set; }
 
         public List<ITWorker> Technicians { get; set; } = new List<ITWorker>();
-
-        public static int count = 0;
 
         public void AssignManager(ITWorker worker)
         {
