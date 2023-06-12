@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EducationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Classrooms">
+    <Key>
+      <PropertyRef Name="IdClassroom" />
+    </Key>
+    <Property Name="IdClassroom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Course" Type="Int32" Nullable="false" />
+    <Property Name="Area" Type="Int32" Nullable="false" />
+    <Property Name="IdSchool" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Schools" Relationship="Self.FK_Classrooms_Schools" FromRole="Classrooms" ToRole="Schools" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_Classrooms" FromRole="Classrooms" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Schools">
+    <Key>
+      <PropertyRef Name="IdSchool" />
+    </Key>
+    <Property Name="IdSchool" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Administration" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Classrooms" Relationship="Self.FK_Classrooms_Schools" FromRole="Schools" ToRole="Classrooms" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="IdStudent" />
+    </Key>
+    <Property Name="IdStudent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Nationality" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IdClassroom" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Classrooms" Relationship="Self.FK_Students_Classrooms" FromRole="Students" ToRole="Classrooms" />
+  </EntityType>
+  <Association Name="FK_Classrooms_Schools">
+    <End Role="Schools" Type="Self.Schools" Multiplicity="1" />
+    <End Role="Classrooms" Type="Self.Classrooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schools">
+        <PropertyRef Name="IdSchool" />
+      </Principal>
+      <Dependent Role="Classrooms">
+        <PropertyRef Name="IdSchool" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Classrooms">
+    <End Role="Classrooms" Type="Self.Classrooms" Multiplicity="1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classrooms">
+        <PropertyRef Name="IdClassroom" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="IdClassroom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EducationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Classrooms" EntityType="Self.Classrooms" />
+    <EntitySet Name="Schools" EntityType="Self.Schools" />
+    <EntitySet Name="Students" EntityType="Self.Students" />
+    <AssociationSet Name="FK_Classrooms_Schools" Association="Self.FK_Classrooms_Schools">
+      <End Role="Schools" EntitySet="Schools" />
+      <End Role="Classrooms" EntitySet="Classrooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Classrooms" Association="Self.FK_Students_Classrooms">
+      <End Role="Classrooms" EntitySet="Classrooms" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

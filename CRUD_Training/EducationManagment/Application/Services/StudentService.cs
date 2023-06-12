@@ -1,11 +1,18 @@
 ﻿using System.Collections.Generic;
 using Domain.Entities;
+using Domain.IRepositories;
 using Domain.IServices;
 
 namespace Application.Services
 {
-    public class StudentService : IService<Student>
+    public class StudentService : IStudentService
     {
+        private readonly IStudentRepository _studentRepository;
+
+        public StudentService(IStudentRepository studentRepository)
+        {
+            _studentRepository = studentRepository;
+        }
         public bool Create(Student entity)
         {
             throw new System.NotImplementedException();

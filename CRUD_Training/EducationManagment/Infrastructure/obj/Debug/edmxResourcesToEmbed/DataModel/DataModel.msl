@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EducationModelStoreContainer" CdmEntityContainer="EducationEntities">
+    <EntitySetMapping Name="Classrooms">
+      <EntityTypeMapping TypeName="EducationModel.Classrooms">
+        <MappingFragment StoreEntitySet="Classrooms">
+          <ScalarProperty Name="IdClassroom" ColumnName="IdClassroom" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="IdSchool" ColumnName="IdSchool" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schools">
+      <EntityTypeMapping TypeName="EducationModel.Schools">
+        <MappingFragment StoreEntitySet="Schools">
+          <ScalarProperty Name="IdSchool" ColumnName="IdSchool" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Administration" ColumnName="Administration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="EducationModel.Students">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="IdClassroom" ColumnName="IdClassroom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

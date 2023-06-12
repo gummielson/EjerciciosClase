@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CoordsManagment.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:CoordsManagment.WebApi.Controllers.CoordsController">
+            <summary>
+            Actions to manage coordinates
+            </summary>
+        </member>
+        <member name="M:CoordsManagment.WebApi.Controllers.CoordsController.Register(System.Collections.Generic.List{System.Decimal})">
+            <summary>
+            Action to register coordinates
+            </summary>
+            <param name="coords"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

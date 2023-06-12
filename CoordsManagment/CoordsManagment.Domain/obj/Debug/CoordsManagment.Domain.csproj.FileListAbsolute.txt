@@ -1,0 +1,6 @@
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Domain\bin\Debug\CoordsManagment.Domain.dll
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Domain\bin\Debug\CoordsManagment.Domain.pdb
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Domain\obj\Debug\CoordsManagment.Domain.csproj.AssemblyReference.cache
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Domain\obj\Debug\CoordsManagment.Domain.csproj.CoreCompileInputs.cache
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Domain\obj\Debug\CoordsManagment.Domain.dll
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Domain\obj\Debug\CoordsManagment.Domain.pdb

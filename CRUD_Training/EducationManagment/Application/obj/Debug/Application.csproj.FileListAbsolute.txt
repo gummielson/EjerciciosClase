@@ -1,0 +1,9 @@
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Application\bin\Debug\Application.dll
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Application\bin\Debug\Application.pdb
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Application\bin\Debug\Domain.dll
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Application\bin\Debug\Domain.pdb
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Application\obj\Debug\Application.csproj.AssemblyReference.cache
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Application\obj\Debug\Application.csproj.CoreCompileInputs.cache
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Application\obj\Debug\Application.csproj.CopyComplete
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Application\obj\Debug\Application.dll
+C:\GIT\Formacion\Tema2\CRUD_Training\EducationManagment\Application\obj\Debug\Application.pdb

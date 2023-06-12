@@ -1,0 +1,9 @@
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Infrastructure.Data\bin\Debug\CoordsManagment.Infrastructure.Data.dll
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Infrastructure.Data\bin\Debug\CoordsManagment.Infrastructure.Data.pdb
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Infrastructure.Data\bin\Debug\CoordsManagment.Domain.dll
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Infrastructure.Data\bin\Debug\CoordsManagment.Domain.pdb
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Infrastructure.Data\obj\Debug\CoordsManagment.Infrastructure.Data.csproj.AssemblyReference.cache
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Infrastructure.Data\obj\Debug\CoordsManagment.Infrastructure.Data.csproj.CoreCompileInputs.cache
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Infrastructure.Data\obj\Debug\CoordsManagment.Infrastructure.Data.csproj.CopyComplete
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Infrastructure.Data\obj\Debug\CoordsManagment.Infrastructure.Data.dll
+C:\GIT\Formacion\Tema2\CoordsManagment\CoordsManagment.Infrastructure.Data\obj\Debug\CoordsManagment.Infrastructure.Data.pdb
