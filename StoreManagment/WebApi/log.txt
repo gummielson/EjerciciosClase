@@ -1,0 +1,44 @@
+2023-06-28 09:42:38.088  [Information] - [] - -------- Application start ---------
+2023-06-28 09:54:00.385  [Information] - [] - -------- Application start ---------
+2023-06-28 09:54:48.154  [Information] - [] - -------- Application start ---------
+2023-06-28 09:56:31.732  [Information] - [] - -------- Application start ---------
+2023-06-28 09:57:00.437  [Information] - [] - -------- Application start ---------
+2023-06-28 09:57:52.705  [Information] - [] - -------- Application start ---------
+2023-06-28 10:01:18.004  [Information] - [] - -------- Application start ---------
+2023-06-28 10:46:57.735  [Information] - [] - -------- Application start ---------
+2023-06-28 12:55:46.323  [Information] - [] - -------- Application start ---------
+2023-06-28 12:57:07.942  [Information] - [] - -------- Application start ---------
+2023-06-28 13:03:26.421  [Information] - [] - -------- Application start ---------
+2023-06-28 13:04:46.753  [Information] - [] - -------- Application start ---------
+2023-06-29 09:15:02.163  [Information] - [] - -------- Application start ---------
+2023-06-29 09:15:13.597  [Information] - [] - -------- Application start ---------
+2023-06-29 09:16:00.976  [Error] - [WebApi.Controllers.ProductController] - Unable to get products by filter
+2023-06-29 09:17:24.641  [Information] - [] - -------- Application start ---------
+2023-06-29 09:17:48.349  [Error] - [WebApi.Controllers.ProductController] - Unable to get products by filter
+2023-06-29 09:18:11.503  [Information] - [] - -------- Application start ---------
+2023-06-29 09:18:59.705  [Information] - [] - -------- Application start ---------
+2023-06-29 09:21:30.521  [Information] - [] - -------- Application start ---------
+2023-06-29 09:23:31.705  [Information] - [] - -------- Application start ---------
+2023-06-29 09:24:35.544  [Information] - [] - -------- Application start ---------
+2023-06-29 09:25:42.712  [Information] - [] - -------- Application start ---------
+2023-06-29 09:27:00.654  [Information] - [] - -------- Application start ---------
+2023-06-29 10:33:19.223  [Information] - [] - -------- Application start ---------
+2023-06-29 10:34:50.224  [Information] - [] - -------- Application start ---------
+2023-06-29 10:36:49.461  [Information] - [] - -------- Application start ---------
+2023-06-29 10:40:22.933  [Information] - [] - -------- Application start ---------
+2023-06-29 12:04:12.729  [Information] - [] - -------- Application start ---------
+2023-06-30 10:09:54.875  [Information] - [] - -------- Application start ---------
+2023-06-30 10:11:53.325  [Information] - [] - -------- Application start ---------
+2023-06-30 10:12:33.785  [Error] - [WebApi.Controllers.ProductController] - Unable to get all proudcts
+2023-06-30 10:12:41.918  [Error] - [WebApi.Controllers.ProductController] - Can't save data
+2023-06-30 10:13:00.764  [Error] - [WebApi.Controllers.ProductController] - Can't save data
+2023-06-30 10:14:13.617  [Information] - [] - -------- Application start ---------
+2023-06-30 11:35:51.543  [Information] - [] - -------- Application start ---------
+2023-06-30 11:37:57.636  [Information] - [] - -------- Application start ---------
+2023-06-30 11:38:09.342  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 11:38:46.781  [Information] - [] - -------- Application start ---------
+2023-06-30 11:38:56.110  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 11:40:06.583  [Information] - [] - -------- Application start ---------
+2023-06-30 11:41:22.016  [Information] - [] - -------- Application start ---------
+2023-06-30 11:42:00.242  [Information] - [] - -------- Application start ---------
+2023-06-30 11:42:50.384  [Information] - [] - -------- Application start ---------
