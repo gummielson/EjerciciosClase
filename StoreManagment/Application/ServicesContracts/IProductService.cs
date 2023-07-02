@@ -1,9 +1,10 @@
-﻿namespace Application.ServicesContracts
+﻿using Domain.Entities;
+
+namespace Application.ServicesContracts
 {
     public interface IProductService
     {
-        //Task SaveDataFromExternalApi();
-        //Task<IEnumerable<ProductDto>> GetAllProducts();
+        Task<IEnumerable<ProductEntity>> GetAllProducts();
         //Task<ResponseDto> InsertProduct(ProductDto product);
         //Task<IEnumerable<ProductDto>> GetProductsByFilter(string filter);
     }

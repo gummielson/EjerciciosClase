@@ -2,6 +2,7 @@
 {
     public class UserEntity
     {
+        public int Id { get; set; }
         public string Lat { get; set; } = string.Empty;
         public string Long { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;

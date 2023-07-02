@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Data.Repositories
 {
@@ -12,9 +11,9 @@ namespace Data.Repositories
             _localFile = Path.Combine(Directory.GetCurrentDirectory(), "LocalFiles", $"{entity}.json");
         }
 
-        public async Task WriteData<T>(T objects)
+        public async Task WriteData<T>(IEnumerable<T> objects)
         {
-            if ((await ReadJsonFile<IEnumerable<T>>()).Count() < 1)
+            if (!(await ReadJsonFile<T>()).Any())
             {
                 string jsonFileWithInputData = JsonConvert.SerializeObject(objects);
 
@@ -25,15 +24,15 @@ namespace Data.Repositories
             }
         }
 
-        public async Task<T> ReadJsonFile<T>()
+        public async Task<IEnumerable<T>> ReadJsonFile<T>()
         {
             string jsonFile;
             using (StreamReader reader = new StreamReader(_localFile))
             {
                 jsonFile = await reader.ReadToEndAsync();
             }
-
-            return JsonConvert.DeserializeObject<T>(jsonFile) ?? default(T);
+            var aa = JsonConvert.DeserializeObject<IEnumerable<T>>(jsonFile);
+            return aa;
         }
     }
 }

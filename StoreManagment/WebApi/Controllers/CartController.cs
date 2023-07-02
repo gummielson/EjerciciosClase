@@ -16,20 +16,20 @@ namespace WebApi.Controllers
             _logger = logger;
         }
 
-        //[HttpGet]
-        //[Route("GetAllCarts")]
-        //public async Task<IActionResult> GetAllCarts()
-        //{
-        //    try
-        //    {
-        //        return Ok(await _service.GetAllCarts());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError("Unable to get all carts");
+        [HttpGet]
+        [Route("GetAllCarts")]
+        public async Task<IActionResult> GetAllCarts()
+        {
+            try
+            {
+                return Ok(await _service.GetAllCarts());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Unable to get all carts");
 
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

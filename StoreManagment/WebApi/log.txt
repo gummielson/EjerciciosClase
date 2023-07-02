@@ -42,3 +42,51 @@
 2023-06-30 11:41:22.016  [Information] - [] - -------- Application start ---------
 2023-06-30 11:42:00.242  [Information] - [] - -------- Application start ---------
 2023-06-30 11:42:50.384  [Information] - [] - -------- Application start ---------
+2023-06-30 12:03:24.193  [Information] - [] - -------- Application start ---------
+2023-06-30 12:05:05.726  [Information] - [] - -------- Application start ---------
+2023-06-30 12:05:26.707  [Information] - [] - -------- Application start ---------
+2023-06-30 12:09:23.317  [Information] - [] - -------- Application start ---------
+2023-06-30 12:09:42.616  [Information] - [] - -------- Application start ---------
+2023-06-30 12:11:10.492  [Information] - [] - -------- Application start ---------
+2023-06-30 12:11:25.508  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 12:12:20.739  [Information] - [] - -------- Application start ---------
+2023-06-30 12:12:39.744  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 12:12:55.287  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 12:12:59.489  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 12:40:38.553  [Information] - [] - -------- Application start ---------
+2023-06-30 12:42:00.736  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 12:42:58.006  [Information] - [] - -------- Application start ---------
+2023-06-30 12:43:43.184  [Information] - [] - -------- Application start ---------
+2023-06-30 12:44:05.165  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 12:44:31.263  [Information] - [] - -------- Application start ---------
+2023-06-30 12:45:02.104  [Information] - [] - -------- Application start ---------
+2023-06-30 12:46:20.199  [Information] - [] - -------- Application start ---------
+2023-06-30 12:49:26.638  [Information] - [] - -------- Application start ---------
+2023-06-30 12:49:43.830  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 12:50:14.963  [Information] - [] - -------- Application start ---------
+2023-06-30 12:51:19.055  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 12:52:01.888  [Information] - [] - -------- Application start ---------
+2023-06-30 12:53:21.252  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 13:04:11.018  [Information] - [] - -------- Application start ---------
+2023-06-30 13:04:22.900  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 13:05:49.743  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 13:06:49.761  [Information] - [] - -------- Application start ---------
+2023-06-30 13:07:34.041  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 13:08:01.446  [Information] - [] - -------- Application start ---------
+2023-06-30 13:17:09.465  [Information] - [] - -------- Application start ---------
+2023-06-30 13:18:56.255  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 13:24:01.253  [Information] - [] - -------- Application start ---------
+2023-06-30 13:24:19.971  [Error] - [WebApi.Controllers.GeneralController] - Cant save data in file
+2023-06-30 13:27:40.915  [Information] - [] - -------- Application start ---------
+2023-06-30 13:27:54.194  [Information] - [] - -------- Application start ---------
+2023-06-30 13:36:17.017  [Information] - [] - -------- Application start ---------
+2023-06-30 14:10:50.516  [Information] - [] - -------- Application start ---------
+2023-06-30 14:23:30.627  [Information] - [] - -------- Application start ---------
+2023-06-30 14:55:28.201  [Information] - [] - -------- Application start ---------
+2023-06-30 14:56:47.535  [Information] - [] - -------- Application start ---------
+2023-07-02 17:14:36.644  [Information] - [] - -------- Application start ---------
+2023-07-02 17:15:57.732  [Information] - [] - -------- Application start ---------
+2023-07-02 17:19:02.122  [Information] - [] - -------- Application start ---------
+2023-07-02 17:20:35.874  [Information] - [] - -------- Application start ---------
+2023-07-02 17:22:23.322  [Information] - [] - -------- Application start ---------
+2023-07-02 17:26:11.073  [Information] - [] - -------- Application start ---------

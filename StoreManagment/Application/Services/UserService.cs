@@ -1,5 +1,6 @@
 ﻿using Application.ServicesContracts;
 using Data.Repositories;
+using Domain.Entities;
 
 namespace Application.Services
 {
@@ -12,10 +13,10 @@ namespace Application.Services
             _repository = repository;
         }
 
-        //public async Task<IEnumerable<UserDto>> GetAllUsers()
-        //{
-        //    return MapUserToDto(await _repository.GetAllUsers());
-        //}
+        public async Task<IEnumerable<UserEntity>> GetAllUsers()
+        {
+            return await _repository.GetAllUsers();
+        }
 
         //private IEnumerable<UserDto> MapUserToDto(IEnumerable<UserEntity> users)
         //{

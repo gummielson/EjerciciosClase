@@ -1,7 +1,9 @@
-﻿namespace Application.ServicesContracts
+﻿using Domain.Entities;
+
+namespace Application.ServicesContracts
 {
     public interface ICartService
     {
-        //Task<IEnumerable<CartDto>> GetAllCarts();
+        Task<IEnumerable<CartEntity>> GetAllCarts();
     }
 }

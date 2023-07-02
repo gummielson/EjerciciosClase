@@ -16,39 +16,21 @@ namespace WebApi.Controllers
             _logger = logger;
         }
 
-        //[HttpGet]
-        //[Route("SaveProductsFromExternalApi")]
-        //public async Task<IActionResult> SaveProductsFromExternalApi()
-        //{
-        //    try
-        //    {
-        //        await _service.SaveDataFromExternalApi();
+        [HttpGet]
+        [Route("GetAllProducts")]
+        public async Task<IActionResult> GetAllProducts()
+        {
+            try
+            {
+                return Ok(await _service.GetAllProducts());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Unable to get all proudcts");
 
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError("Can't save data");
-
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
-
-        //[HttpGet]
-        //[Route("GetAllProducts")]
-        //public async Task<IActionResult> GetAllProducts()
-        //{
-        //    try
-        //    {
-        //        return Ok(await _service.GetAllProducts());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError("Unable to get all proudcts");
-
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+                return BadRequest(ex.Message);
+            }
+        }
 
         //[HttpPost]
         //[Route("InsertProduct")]

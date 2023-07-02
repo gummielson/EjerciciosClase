@@ -19,23 +19,8 @@ namespace WebApi
             services.ConfigureIoC();
 
             #region Providers
-            services.AddHttpClient<IProductProvider, ProductProvider>(c =>
+            services.AddHttpClient<IProvider, Provider>(c =>
             {
-                c.BaseAddress = new Uri(Configuration["Endpoints:Products"]);
-                c.Timeout = new TimeSpan(0, 0, 45);
-                c.DefaultRequestHeaders.Clear();
-            });
-
-            services.AddHttpClient<IUserProvider, UserProvider>(c =>
-            {
-                c.BaseAddress = new Uri(Configuration["Endpoints:Users"]);
-                c.Timeout = new TimeSpan(0, 0, 45);
-                c.DefaultRequestHeaders.Clear();
-            });
-
-            services.AddHttpClient<ICartProvider, CartProvider>(c =>
-            {
-                c.BaseAddress = new Uri(Configuration["Endpoints:Carts"]);
                 c.Timeout = new TimeSpan(0, 0, 45);
                 c.DefaultRequestHeaders.Clear();
             });

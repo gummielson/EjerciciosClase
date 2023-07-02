@@ -16,38 +16,20 @@ namespace WebApi.Controllers
             _service = service;
         }
 
-        //[HttpGet]
-        //[Route("SaveProductsFromExternalApi")]
-        //public async Task<IActionResult> SaveProductsFromExternalApi()
-        //{
-        //    try
-        //    {
-        //        await _service.SaveDataFromExternalApi();
+        [HttpGet]
+        [Route("GetAllUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                return Ok(await _service.GetAllUsers());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Unable to get all users");
 
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError("Can't save data");
-
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
-
-        //[HttpGet]
-        //[Route("GetAllUsers")]
-        //public async Task<IActionResult> GetAllUsers()
-        //{
-        //    try
-        //    {
-        //        return Ok(await _service.GetAllUsers());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError("Unable to get all users");
-
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

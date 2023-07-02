@@ -1,11 +1,10 @@
 ﻿using System.Text.Json;
-using Data.DataEntities;
 using Data.ProviderContracts;
 using Microsoft.Extensions.Configuration;
 
 namespace Data.Providers
 {
-    public class Provider
+    public class Provider : IProvider
     {
         private readonly HttpClient _httpClient;
         private IConfiguration _configuration;
@@ -16,8 +15,9 @@ namespace Data.Providers
             _configuration = configuration;
         }
 
-        public async Task<IEnumerable<T>> GetAllUsers<T>(string entity)
+        public async Task<IEnumerable<T>> GetAll<T>(string entity)
         {
+            string test = $"{_configuration[$"Endpoints:{entity}"]}";
             using (var response = await _httpClient.GetAsync($"{_configuration[$"Endpoints:{entity}"]}"))
             {
                 response.EnsureSuccessStatusCode();

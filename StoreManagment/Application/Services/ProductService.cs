@@ -1,5 +1,6 @@
 ﻿using Application.ServicesContracts;
 using AutoMapper;
+using Domain.Entities;
 using Domain.RepositoryContracts;
 
 namespace Application.Services
@@ -15,18 +16,10 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        //public async Task SaveDataFromExternalApi()
-        //{
-        //    await _repository.SaveInMemory();
-        //}
-
-        //public async Task<IEnumerable<ProductDto>> GetAllProducts()
-        //{
-        //    IEnumerable<ProductEntity> products = await _repository.GetAllProducts();
-
-        //    //return _mapper.Map<ProductDto>(products);
-        //    return MapProductsToDto(products);
-        //}
+        public async Task<IEnumerable<ProductEntity>> GetAllProducts()
+        {
+            return await _repository.GetAllProducts();
+        }
 
         //public async Task<ResponseDto> InsertProduct(ProductDto product)
         //{

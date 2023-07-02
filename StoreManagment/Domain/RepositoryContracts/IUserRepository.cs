@@ -1,8 +1,10 @@
-﻿namespace Data.Repositories
+﻿using Domain.Entities;
+
+namespace Data.Repositories
 {
     public interface IUserRepository
     {
-        //Task<IEnumerable<UserEntity>> GetAllUsers();
+        Task<IEnumerable<UserEntity>> GetAllUsers();
         Task SaveDataInFile();
     }
 }
