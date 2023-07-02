@@ -13,14 +13,19 @@ namespace Data.Repositories
 
         public async Task WriteData<T>(IEnumerable<T> objects)
         {
+            string jsonFileWithInputData = JsonConvert.SerializeObject(objects);
+
+            using (StreamWriter writer = new StreamWriter(_localFile))
+            {
+                await writer.WriteAsync(jsonFileWithInputData);
+            }
+        }
+
+        public async Task WriteDataFirst<T>(IEnumerable<T> objects)
+        {
             if (!(await ReadJsonFile<T>()).Any())
             {
-                string jsonFileWithInputData = JsonConvert.SerializeObject(objects);
-
-                using (StreamWriter writer = new StreamWriter(_localFile))
-                {
-                    await writer.WriteAsync(jsonFileWithInputData);
-                }
+                await WriteData(objects);
             }
         }
 

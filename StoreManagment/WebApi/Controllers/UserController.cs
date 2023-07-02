@@ -31,5 +31,23 @@ namespace WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        [HttpDelete]
+        [Route("Delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _service.Delete(id);
+                return Ok("The user was deleted properly");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Unable to delete the selected user: {ex.Message}");
+
+                return BadRequest($"Unable to delete the selected user: {ex.Message}");
+            }
+        }
     }
 }

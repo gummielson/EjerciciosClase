@@ -2,6 +2,7 @@
 using Data.ProviderContracts;
 using Domain.Entities;
 using Domain.RepositoryContracts;
+using static Data.DataEntities.CartDataEntity;
 using static Domain.Entities.CartEntity;
 
 namespace Data.Repositories
@@ -16,6 +17,7 @@ namespace Data.Repositories
         private readonly IUserRepository _userRepository;
         #endregion
 
+        #region constructor
         public CartRepository(IProvider provider, ICacheRepository cache,
             IProductRepository productRepository, IUserRepository userRepository)
         {
@@ -25,11 +27,13 @@ namespace Data.Repositories
             _productRepository = productRepository;
             _userRepository = userRepository;
         }
+        #endregion
 
+        #region public methods
         public async Task<IEnumerable<CartEntity>> GetAllCarts()
         {
             List<CartEntity> cartEntities = new List<CartEntity>();
-            IEnumerable<CartDataEntity>? carts = await GetDataFormCache();
+            IEnumerable<CartDataEntity>? carts = await GetData();
             IEnumerable<ProductEntity> products = await _productRepository.GetAllProducts();
             IEnumerable<UserEntity> users = await _userRepository.GetAllUsers();
 
@@ -43,14 +47,53 @@ namespace Data.Repositories
 
         public async Task SaveDataInFile()
         {
-            await _FileRepository.WriteData(await _provider.GetAll<CartDataEntity>("Cart"));
+            await _FileRepository.WriteDataFirst(await _provider.GetAll<CartDataEntity>("Cart"));
         }
 
-        private async Task<IEnumerable<CartDataEntity>> GetDataFormCache()
+        public async Task Delete(int id)
+        {
+            List<CartDataEntity> carts = (await GetData()).ToList();
+
+            carts.Remove(carts.First(x => x.Id == id));
+            await InsertData(carts);
+        }
+
+        public async Task DeleteProductsInCart(int idProduct)
+        {
+            IEnumerable<CartDataEntity> carts = await GetData();
+
+            foreach (CartDataEntity cart in carts)
+            {
+                if (cart.Products is not null)
+                {
+                    cart.Products = cart.Products.Where(p => p.ProductId != idProduct).ToArray();
+                }
+            }
+
+            await InsertData(carts);
+        }
+
+        public async Task DeleteCartFromUser(int idUser)
+        {
+            var aa = (await GetData()).First(x => x.UserId == idUser).Id;
+            await Delete((await GetData()).First(x => x.UserId == idUser).Id);
+        }
+
+        #endregion
+
+        #region private methods
+
+        private async Task InsertData(IEnumerable<CartDataEntity> carts)
+        {
+            await _FileRepository.WriteData(carts);
+            _cache.SetIntoCache("carts", carts);
+        }
+
+        private async Task<IEnumerable<CartDataEntity>> GetData()
         {
             IEnumerable<CartDataEntity>? carts = _cache.Get<IEnumerable<CartDataEntity>>("carts");
 
-            if (carts is null)
+            if (carts is null || carts.Count() == 0)
             {
                 carts = await _FileRepository.ReadJsonFile<CartDataEntity>() ?? Enumerable.Empty<CartDataEntity>();
                 _cache.SetIntoCache("carts", carts);
@@ -77,16 +120,20 @@ namespace Data.Repositories
         {
             List<ProductInUser> productsInUser = new List<ProductInUser>();
 
-            foreach (var product in cart.Products)
+            if (cart.Products is not null)
             {
-                productsInUser.Add(new ProductInUser
+                foreach (var product in cart.Products)
                 {
-                    ProductQuantity = product.Quantity,
-                    Product = products.FirstOrDefault(x => x.Id == product.ProductId) ?? new ProductEntity()
-                });
+                    productsInUser.Add(new ProductInUser
+                    {
+                        ProductQuantity = product.Quantity,
+                        Product = products.FirstOrDefault(x => x.Id == product.ProductId) ?? new ProductEntity()
+                    });
+                }
             }
 
             return productsInUser;
         }
+        #endregion
     }
 }

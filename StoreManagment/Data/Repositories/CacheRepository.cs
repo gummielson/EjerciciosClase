@@ -13,7 +13,7 @@ namespace Data.Repositories
 
         public void SetIntoCache<T>(string key, T value)
         {
-            _cache.Set(key, value);
+            _cache.Set(key, value, TimeSpan.FromMinutes(5));
         }
 
         public T Get<T>(string key)

@@ -8,17 +8,34 @@ namespace Application.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepository _repository;
+        private readonly ICartService _cartService;
         private readonly IMapper _mapper;
 
-        public ProductService(IProductRepository repository, IMapper mapper)
+        public ProductService(IProductRepository repository, IMapper mapper, ICartService cartService)
         {
             _repository = repository;
             _mapper = mapper;
+            _cartService = cartService;
         }
 
         public async Task<IEnumerable<ProductEntity>> GetAllProducts()
         {
             return await _repository.GetAllProducts();
+        }
+
+        public async Task DeleteProduct(int id)
+        {
+            ProductEntity? productEntity = (await GetAllProducts()).FirstOrDefault(x => x.Id == id);
+
+            if (productEntity is not null)
+            {
+                await _repository.DeleteProduct(id);
+                await _cartService.DeleteProductInCarts(id);
+            }
+            else
+            {
+                throw new Exception("The entered id doesn't exists");
+            }      
         }
 
         //public async Task<ResponseDto> InsertProduct(ProductDto product)

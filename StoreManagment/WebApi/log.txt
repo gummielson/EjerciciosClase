@@ -90,3 +90,23 @@
 2023-07-02 17:20:35.874  [Information] - [] - -------- Application start ---------
 2023-07-02 17:22:23.322  [Information] - [] - -------- Application start ---------
 2023-07-02 17:26:11.073  [Information] - [] - -------- Application start ---------
+2023-07-02 18:19:09.961  [Information] - [] - -------- Application start ---------
+2023-07-02 18:19:24.987  [Error] - [WebApi.Controllers.CartController] - Unable to delete cart
+2023-07-02 18:20:23.556  [Information] - [] - -------- Application start ---------
+2023-07-02 18:20:47.787  [Error] - [WebApi.Controllers.CartController] - Unable to delete cart: Inserted cart id doesn´t exists
+2023-07-02 18:32:33.358  [Information] - [] - -------- Application start ---------
+2023-07-02 18:34:51.888  [Information] - [] - -------- Application start ---------
+2023-07-02 18:37:50.432  [Information] - [] - -------- Application start ---------
+2023-07-02 18:47:16.342  [Information] - [] - -------- Application start ---------
+2023-07-02 19:49:37.987  [Information] - [] - -------- Application start ---------
+2023-07-02 19:50:42.138  [Information] - [] - -------- Application start ---------
+2023-07-02 19:51:01.113  [Error] - [WebApi.Controllers.ProductController] - Unable to delete the selected product: The entered id doesn't exists
+2023-07-02 20:14:38.747  [Information] - [] - -------- Application start ---------
+2023-07-02 20:17:31.438  [Error] - [WebApi.Controllers.UserController] - Unable to delete the selected user: The entered user doesn`t exists
+2023-07-02 20:18:58.935  [Information] - [] - -------- Application start ---------
+2023-07-02 20:19:19.379  [Error] - [WebApi.Controllers.UserController] - Unable to delete the selected user: The entered user doesn`t exists
+2023-07-02 20:20:19.046  [Information] - [] - -------- Application start ---------
+2023-07-02 20:55:19.698  [Information] - [] - -------- Application start ---------
+2023-07-02 20:58:58.667  [Information] - [] - -------- Application start ---------
+2023-07-02 20:59:13.977  [Information] - [] - -------- Application start ---------
+2023-07-02 21:05:03.088  [Information] - [] - -------- Application start ---------

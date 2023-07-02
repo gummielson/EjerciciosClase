@@ -6,5 +6,8 @@ namespace Domain.RepositoryContracts
     {
         Task<IEnumerable<CartEntity>> GetAllCarts();
         Task SaveDataInFile();
+        Task Delete(int id);
+        Task DeleteProductsInCart(int idProduct);
+        Task DeleteCartFromUser(int idUser);
     }
 }

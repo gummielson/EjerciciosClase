@@ -7,29 +7,25 @@ namespace Data.Repositories
 {
     public class ProductRepository : IProductRepository
     {
+        #region private variables
         private readonly IProvider _provider;
         private readonly ICacheRepository _cache;
         private readonly FileRepository _FileRepository;
+        #endregion
 
+        #region constructor
         public ProductRepository(IProvider provider, ICacheRepository cache)
         {
             _provider = provider;
             _FileRepository = new FileRepository("Products");
             _cache = cache;
         }
+        #endregion
 
-        #region Public methods
+        #region public methods
         public async Task<IEnumerable<ProductEntity>> GetAllProducts()
         {
-            IEnumerable<ProductDataEntity>? products = _cache.Get<IEnumerable<ProductDataEntity>>("products");
-
-            if (products is null)
-            {
-                products = await _FileRepository.ReadJsonFile<ProductDataEntity>() ?? Enumerable.Empty<ProductDataEntity>();
-                _cache.SetIntoCache("products", products);
-            }
-
-            return DataEntityToEntity(products);
+            return DataEntityToEntity(await GetData());
         }
 
         //public async Task InsertProduct(ProductDataEntity product)
@@ -47,7 +43,16 @@ namespace Data.Repositories
 
         public async Task SaveDataInFile()
         {
-            await _FileRepository.WriteData<ProductDataEntity>(await _provider.GetAll<ProductDataEntity>("Product"));
+            await _FileRepository.WriteDataFirst<ProductDataEntity>(await _provider.GetAll<ProductDataEntity>("Product"));
+        }
+
+        public async Task DeleteProduct(int id)
+        {
+            List<ProductDataEntity> products = (await GetData()).ToList();
+
+            products.Remove(products.First(x => x.Id == id));
+            await _FileRepository.WriteData(products);
+            _cache.SetIntoCache("products", products);
         }
         #endregion
 
@@ -65,6 +70,19 @@ namespace Data.Repositories
                 Rate = dataEntity.RatingProperty.Rate,
                 Title = dataEntity.Title
             });
+        }
+
+        private async Task<IEnumerable<ProductDataEntity>> GetData()
+        {
+            IEnumerable<ProductDataEntity>? products = _cache.Get<IEnumerable<ProductDataEntity>>("products");
+
+            if (products is null)
+            {
+                products = await _FileRepository.ReadJsonFile<ProductDataEntity>() ?? Enumerable.Empty<ProductDataEntity>();
+                _cache.SetIntoCache("products", products);
+            }
+
+            return products;
         }
         #endregion
 

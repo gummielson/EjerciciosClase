@@ -1,6 +1,7 @@
 ﻿using Crosscuting.IoC;
 using Data.ProviderContracts;
 using Data.Providers;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.OpenApi.Models;
 
 namespace WebApi
@@ -28,7 +29,7 @@ namespace WebApi
 
             services.AddCors(options =>
             {
-                options.AddPolicy("a",
+                options.AddPolicy("",
                 builder =>
                 {
                     builder.AllowAnyOrigin()
@@ -38,14 +39,6 @@ namespace WebApi
             });
 
             services.AddMemoryCache();
-            //    memoryCacheOptions =>
-            //{
-            //    memoryCacheOptions.SizeLimit = 1024;
-            //    memoryCacheOptions.ExpirationScanFrequency = TimeSpan.FromMinutes(5);
-    //            var cacheOptions = new MemoryCacheEntryOptions()
-    //.SetAbsoluteExpiration(TimeSpan.FromMinutes(1))
-    //.SetSlidingExpiration(TimeSpan.FromSeconds(20));
-            //});
 
             services.AddControllers();
 

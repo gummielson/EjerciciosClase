@@ -20,5 +20,30 @@ namespace Application.Services
         {
             return await _repository.GetAllCarts();
         }
+
+        public async Task Delete(int id)
+        {
+            CartEntity? cartToDelete = (await _repository.GetAllCarts()).FirstOrDefault(x => x.Id == id);
+
+            if (cartToDelete is not null)
+            {
+                await _repository.Delete(id);
+            }
+            else
+            {
+                throw new Exception("Inserted cart id doesn´t exists");
+            }
+        }
+
+        public async Task DeleteProductInCarts(int idProduct)
+        {
+
+            await _repository.DeleteProductsInCart(idProduct);
+        }
+
+        public async Task DeleteCartFromUser(int idUser)
+        {
+            await _repository.DeleteCartFromUser(idUser);
+        }
     }
 }

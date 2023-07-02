@@ -32,6 +32,23 @@ namespace WebApi.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("Delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _service.DeleteProduct(id);
+                return Ok("The product was deleted properly");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Unable to delete the selected product: {ex.Message}");
+
+                return BadRequest($"Unable to delete the selected product: {ex.Message}");
+            }
+        }
+
         //[HttpPost]
         //[Route("InsertProduct")]
         //public async Task<IActionResult> InsertProduct([Required] ProductDto product)

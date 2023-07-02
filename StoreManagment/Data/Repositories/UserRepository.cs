@@ -1,26 +1,49 @@
-﻿using System.Collections.Generic;
-using Data.DataEntities;
+﻿using Data.DataEntities;
 using Data.ProviderContracts;
 using Domain.Entities;
-using Microsoft.Extensions.Caching.Memory;
-using static Data.DataEntities.CartDataEntity;
 
 namespace Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
+        #region private variables
         private readonly IProvider _provider;
         private readonly ICacheRepository _cache;
         private readonly FileRepository _fileRepository;
+        #endregion
 
+        #region constructor
         public UserRepository(IProvider provider, ICacheRepository cache)
         {
             _provider = provider;
             _cache = cache;
             _fileRepository = new FileRepository("User");
         }
+        #endregion
+
+        #region public methods
+        public async Task Delete(int id)
+        {
+            List<UserDataEntity> users = (await GetData()).ToList();
+
+            users.Remove(users.First(x => x.Id == id));
+            await _fileRepository.WriteData(users);
+            _cache.SetIntoCache("users", users);
+        }
 
         public async Task<IEnumerable<UserEntity>> GetAllUsers()
+        {
+            return DataEntityToEntity(await GetData());
+        }
+
+        public async Task SaveDataInFile()
+        {
+            await _fileRepository.WriteDataFirst(await _provider.GetAll<UserDataEntity>("User"));
+        }
+        #endregion
+
+        #region private methods
+        private async Task<IEnumerable<UserDataEntity>> GetData()
         {
             IEnumerable<UserDataEntity>? users = _cache.Get<IEnumerable<UserDataEntity>>("users");
 
@@ -30,15 +53,9 @@ namespace Data.Repositories
                 _cache.SetIntoCache("users", users);
             }
 
-            return DataEntityToEntity(users);
+            return users;
         }
 
-        public async Task SaveDataInFile()
-        {
-            await _fileRepository.WriteData(await _provider.GetAll<UserDataEntity>("User"));
-        }
-
-        #region private methods
         private IEnumerable<UserEntity> DataEntityToEntity(IEnumerable<UserDataEntity> dataEntities) 
         {
             return dataEntities.Select(dataEntity => new UserEntity

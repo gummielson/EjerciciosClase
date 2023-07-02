@@ -7,5 +7,6 @@ namespace Domain.RepositoryContracts
         Task<IEnumerable<ProductEntity>> GetAllProducts();
         //Task InsertProduct(ProductEntity product);
         Task SaveDataInFile();
+        Task DeleteProduct(int id);
     }
 }
