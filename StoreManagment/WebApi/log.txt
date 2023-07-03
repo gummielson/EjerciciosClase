@@ -110,3 +110,10 @@
 2023-07-02 20:58:58.667  [Information] - [] - -------- Application start ---------
 2023-07-02 20:59:13.977  [Information] - [] - -------- Application start ---------
 2023-07-02 21:05:03.088  [Information] - [] - -------- Application start ---------
+2023-07-03 09:27:52.753  [Information] - [] - -------- Application start ---------
+2023-07-03 09:29:57.189  [Information] - [] - -------- Application start ---------
+2023-07-03 09:31:02.599  [Information] - [] - -------- Application start ---------
+2023-07-03 09:33:48.470  [Information] - [] - -------- Application start ---------
+2023-07-03 09:34:08.943  [Error] - [WebApi.Controllers.UserController] - Unable to delete the selected user: Sequence contains no matching element
+2023-07-03 09:38:02.967  [Information] - [] - -------- Application start ---------
+2023-07-03 09:38:50.919  [Information] - [] - -------- Application start ---------

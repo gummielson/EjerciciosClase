@@ -75,8 +75,8 @@ namespace Data.Repositories
 
         public async Task DeleteCartFromUser(int idUser)
         {
-            var aa = (await GetData()).First(x => x.UserId == idUser).Id;
-            await Delete((await GetData()).First(x => x.UserId == idUser).Id);
+            int idCart = (await GetData()).First(x => x.UserId == idUser).Id;
+            await Delete(idCart);
         }
 
         #endregion

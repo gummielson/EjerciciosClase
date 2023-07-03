@@ -19,12 +19,9 @@ namespace Application.Services
         {
             UserEntity? userEntity = (await GetAllUsers()).FirstOrDefault(x => x.Id == id);
 
-            if (userEntity is not null) 
+            if (userEntity is not null)
             {
-                if(await CheckIfTheUserHasACart(userEntity))
-                {
-                    await _cartService.DeleteCartFromUser(id);
-                }
+                await _cartService.DeleteCartFromUser(id);
                 await _repository.Delete(id);
             }
             else
@@ -37,12 +34,6 @@ namespace Application.Services
         {
             return await _repository.GetAllUsers();
         }
-
-        private async Task<bool> CheckIfTheUserHasACart(UserEntity user)
-        {
-            return (await _cartService.GetAllCarts()).Any(x => x.User == user);
-        }
-
 
         //private IEnumerable<UserDto> MapUserToDto(IEnumerable<UserEntity> users)
         //{

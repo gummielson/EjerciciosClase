@@ -37,7 +37,6 @@ namespace Application.Services
 
         public async Task DeleteProductInCarts(int idProduct)
         {
-
             await _repository.DeleteProductsInCart(idProduct);
         }
 
