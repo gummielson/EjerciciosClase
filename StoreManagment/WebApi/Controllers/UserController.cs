@@ -1,5 +1,7 @@
-﻿using Application.ServicesContracts;
+﻿using Application.Dtos;
+using Application.ServicesContracts;
 using Microsoft.AspNetCore.Mvc;
+using static Data.DataEntities.CartDataEntity;
 
 namespace WebApi.Controllers
 {
@@ -32,7 +34,6 @@ namespace WebApi.Controllers
             }
         }
 
-
         [HttpDelete]
         [Route("Delete")]
         public async Task<IActionResult> Delete(int id)
@@ -47,6 +48,24 @@ namespace WebApi.Controllers
                 _logger.LogError($"Unable to delete the selected user: {ex.Message}");
 
                 return BadRequest($"Unable to delete the selected user: {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        [Route("InsertUser")]
+        public async Task<IActionResult> InsertUser(UserDto userDto)
+        {
+            try
+            {
+                await _service.InsertUser(userDto);
+
+                return Ok("The user was inserted properly");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Unable to insert user");
+
+                return BadRequest(ex.Message);
             }
         }
     }

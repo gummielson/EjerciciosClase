@@ -1,4 +1,5 @@
-﻿using Application.ServicesContracts;
+﻿using Application.Dtos;
+using Application.ServicesContracts;
 using AutoMapper;
 using Domain.Entities;
 using Domain.RepositoryContracts;
@@ -38,22 +39,17 @@ namespace Application.Services
             }      
         }
 
-        //public async Task<ResponseDto> InsertProduct(ProductDto product)
-        //{
-        //    string result = string.Empty;
-
-        //    if((await _repository.GetAllProducts()).Any()) 
-        //    {
-        //        int id = (await _repository.GetAllProducts()).Select(p => p.Id).Max() + 1;
-        //        await _repository.InsertProduct(MapDtoToProduct(product, id));
-        //    }
-        //    else
-        //    {
-        //        result = "Failed to insert product. No products loaded yet.";
-        //    }
-
-        //    return new ResponseDto() { Result = result };
-        //}
+        public async Task InsertProduct(ProductDto product)
+        {
+            if ((await GetAllProducts()).Any())
+            {
+                await _repository.InsertProduct(await MapDtoToProduct(product));
+            }
+            else
+            {
+                throw new Exception("");
+            }
+        }
 
         //public async Task<IEnumerable<ProductDto>> GetProductsByFilter(string filter)
         //{
@@ -78,18 +74,21 @@ namespace Application.Services
         //    });
         //}
 
-        //private ProductEntity MapDtoToProduct(ProductDto product, int id)
-        //{
-        //    return new ProductEntity()
-        //    {
-        //        Id = id,
-        //        Title = product.Title,
-        //        Price = product.Price,
-        //        Description = product.Description,
-        //        Category = product.Category,
-        //        Image = product.Image,
-        //        RatingProperty = product.RatingProperty
-        //    };
-        //}
+        private async Task<ProductEntity> MapDtoToProduct(ProductDto product)
+        {
+            int id = (await GetAllProducts()).Select(p => p.Id).Max() + 1;
+
+            return new ProductEntity()
+            {
+                Id = id,
+                Title = product.Title,
+                Price = product.Price,
+                Description = product.Description,
+                Category = product.Category,
+                Image = product.Image,
+                Count = product.Count,
+                Rate = product.Rate
+            };
+        }
     }
 }

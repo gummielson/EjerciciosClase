@@ -10,14 +10,14 @@ namespace Data.Repositories
         #region private variables
         private readonly IProvider _provider;
         private readonly ICacheRepository _cache;
-        private readonly FileRepository _FileRepository;
+        private readonly FileRepository _fileRepository;
         #endregion
 
         #region constructor
         public ProductRepository(IProvider provider, ICacheRepository cache)
         {
             _provider = provider;
-            _FileRepository = new FileRepository("Products");
+            _fileRepository = new FileRepository("Products");
             _cache = cache;
         }
         #endregion
@@ -28,22 +28,27 @@ namespace Data.Repositories
             return DataEntityToEntity(await GetData());
         }
 
-        //public async Task InsertProduct(ProductDataEntity product)
-        //{
-        //    IEnumerable<ProductDataEntity> ? productsInCache = _cache.Get<IEnumerable<ProductDataEntity>>("products");
+        public async Task InsertProduct(ProductEntity product)
+        {
+            IEnumerable<ProductDataEntity>? products = await GetData();
 
-        //    if (productsInCache != null)
-        //    {
-        //        productsInCache.ToList().Add(product);
-        //        _cache.SetIntoCache("products", productsInCache);
-        //    }
-
-        //    await _FileRepository.WriteData((await _FileRepository.ReadJsonFile<ProductDataEntity>()).ToList().Append(product));
-        //}
+            if (products is not null)
+            {
+                if(products.Any()) 
+                {
+                    products.Append(EntityToDataEntity(product));
+                    await InsertData(products);
+                }
+            }
+            else
+            {
+                throw new Exception("Data wasnt loaded yet");
+            }
+        }
 
         public async Task SaveDataInFile()
         {
-            await _FileRepository.WriteDataFirst<ProductDataEntity>(await _provider.GetAll<ProductDataEntity>("Product"));
+            await _fileRepository.WriteDataFirst<ProductDataEntity>(await _provider.GetAll<ProductDataEntity>("Product"));
         }
 
         public async Task DeleteProduct(int id)
@@ -51,13 +56,13 @@ namespace Data.Repositories
             List<ProductDataEntity> products = (await GetData()).ToList();
 
             products.Remove(products.First(x => x.Id == id));
-            await _FileRepository.WriteData(products);
+            await _fileRepository.WriteData(products);
             _cache.SetIntoCache("products", products);
         }
         #endregion
 
         #region private methods
-        private IEnumerable<ProductEntity> DataEntityToEntity(IEnumerable<ProductDataEntity> dataEntities) 
+        private IEnumerable<ProductEntity> DataEntityToEntity(IEnumerable<ProductDataEntity> dataEntities)
         {
             return dataEntities.Select(dataEntity => new ProductEntity
             {
@@ -78,11 +83,34 @@ namespace Data.Repositories
 
             if (products is null)
             {
-                products = await _FileRepository.ReadJsonFile<ProductDataEntity>() ?? Enumerable.Empty<ProductDataEntity>();
+                products = await _fileRepository.ReadJsonFile<ProductDataEntity>() ?? Enumerable.Empty<ProductDataEntity>();
                 _cache.SetIntoCache("products", products);
             }
 
             return products;
+        }
+        private async Task InsertData(IEnumerable<ProductDataEntity> products)
+        {
+            await _fileRepository.WriteData(products);
+            _cache.SetIntoCache("products", products);
+        }
+
+        private ProductDataEntity EntityToDataEntity(ProductEntity entity)
+        {
+            return new ProductDataEntity
+            {
+                Id = entity.Id,
+                Category = entity.Category,
+                RatingProperty = new ProductDataEntity.Rating
+                {
+                    Count = entity.Count,
+                    Rate = entity.Rate
+                },
+                Description = entity.Description,
+                Image = entity.Image,
+                Price = entity.Price,
+                Title = entity.Title
+            };
         }
         #endregion
 

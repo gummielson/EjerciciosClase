@@ -1,4 +1,5 @@
-﻿using Application.ServicesContracts;
+﻿using Application.Dtos;
+using Application.ServicesContracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -49,23 +50,23 @@ namespace WebApi.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Route("InsertProduct")]
-        //public async Task<IActionResult> InsertProduct([Required] ProductDto product)
-        //{
-        //    try
-        //    {
-        //        var response = await _service.InsertProduct(product);
+        [HttpPost]
+        [Route("InsertProduct")]
+        public async Task<IActionResult> InsertProduct(ProductDto product)
+        {
+            try
+            {
+                await _service.InsertProduct(product);
 
-        //        return string.IsNullOrWhiteSpace(response.Result) ? Ok() : BadRequest(response.Result);
-        //    }
-        //    catch (Exception ex) 
-        //    {
-        //        _logger.LogError("Unable to insert product");
+                return Ok("The product was inserted properly");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Unable to insert product");
 
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+                return BadRequest(ex.Message);
+            }
+        }
 
         //[HttpGet]
         //[Route("GetProductsByFilter")]

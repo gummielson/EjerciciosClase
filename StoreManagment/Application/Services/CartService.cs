@@ -1,5 +1,7 @@
-﻿using Application.ServicesContracts;
+﻿using Application.Dtos;
+using Application.ServicesContracts;
 using AutoMapper;
+using Data.Repositories;
 using Domain.Entities;
 using Domain.RepositoryContracts;
 
@@ -8,12 +10,14 @@ namespace Application.Services
     public class CartService : ICartService
     {
         private readonly ICartRepository _repository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public CartService(ICartRepository repository, IMapper mapper)
+        public CartService(ICartRepository repository, IMapper mapper, IUserRepository userRepository)
         {
             _repository = repository;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         public async Task<IEnumerable<CartEntity>> GetAllCarts()
@@ -40,9 +44,21 @@ namespace Application.Services
             await _repository.DeleteProductsInCart(idProduct);
         }
 
-        public async Task DeleteCartFromUser(int idUser)
+        public async Task InsertCart(CartDto cartDto)
         {
-            await _repository.DeleteCartFromUser(idUser);
+            UserEntity user = await _userRepository.GetUserById(cartDto.IdUser);
+            await _repository.InsertCart(await DtoToEntity(user));
+        }
+
+        private async Task<CartEntity> DtoToEntity(UserEntity user)
+        {
+            int id = (await GetAllCarts()).Select(p => p.Id).Max() + 1;
+
+            return new CartEntity
+            {
+                Id = id,
+                User = user
+            };
         }
     }
 }

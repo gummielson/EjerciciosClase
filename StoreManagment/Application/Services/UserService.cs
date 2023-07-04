@@ -1,18 +1,20 @@
-﻿using Application.ServicesContracts;
+﻿using Application.Dtos;
+using Application.ServicesContracts;
 using Data.Repositories;
 using Domain.Entities;
+using Domain.RepositoryContracts;
 
 namespace Application.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _repository;
-        private readonly ICartService _cartService;
+        private readonly ICartRepository _cartRepository;
 
-        public UserService(IUserRepository repository, ICartService cartService)
+        public UserService(IUserRepository repository, ICartRepository cartRepository)
         {
             _repository = repository;
-            _cartService = cartService;
+            _cartRepository = cartRepository;
         }
 
         public async Task Delete(int id)
@@ -21,7 +23,7 @@ namespace Application.Services
 
             if (userEntity is not null)
             {
-                await _cartService.DeleteCartFromUser(id);
+                await _cartRepository.DeleteCartFromUser(id);
                 await _repository.Delete(id);
             }
             else
@@ -33,6 +35,40 @@ namespace Application.Services
         public async Task<IEnumerable<UserEntity>> GetAllUsers()
         {
             return await _repository.GetAllUsers();
+        }
+
+        public async Task InsertUser(UserDto userDto)
+        {
+            if ((await GetAllUsers()).Any())
+            {
+                await _repository.InsertUser(await MapDtoToEntity(userDto));
+            }
+            else
+            {
+                throw new Exception("");
+            }
+        }
+
+        private async Task<UserEntity> MapDtoToEntity(UserDto userDto)
+        {
+            int id = (await GetAllUsers()).Select(p => p.Id).Max() + 1;
+
+            return new UserEntity
+            {
+                Id = id,
+                City = userDto.City,
+                Email = userDto.Email,
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+                Lat = userDto.Lat,
+                Long = userDto.Long,
+                Number = userDto.Number,
+                Password = userDto.Password,
+                Phone = userDto.Phone,
+                Street = userDto.Street,
+                Username = userDto.Username,
+                ZipCode = userDto.ZipCode
+            };
         }
 
         //private IEnumerable<UserDto> MapUserToDto(IEnumerable<UserEntity> users)

@@ -23,7 +23,7 @@ namespace Data.Repositories
         {
             _provider = provider;
             _cache = cache;
-            _FileRepository = new FileRepository("Cart");
+            _FileRepository = new FileRepository("cart");
             _productRepository = productRepository;
             _userRepository = userRepository;
         }
@@ -47,7 +47,7 @@ namespace Data.Repositories
 
         public async Task SaveDataInFile()
         {
-            await _FileRepository.WriteDataFirst(await _provider.GetAll<CartDataEntity>("Cart"));
+            await _FileRepository.WriteDataFirst(await _provider.GetAll<CartDataEntity>("cart"));
         }
 
         public async Task Delete(int id)
@@ -77,6 +77,24 @@ namespace Data.Repositories
         {
             int idCart = (await GetData()).First(x => x.UserId == idUser).Id;
             await Delete(idCart);
+        }
+
+        public async Task InsertCart(CartEntity cart)
+        {
+            IEnumerable<CartDataEntity>? carts = await GetData();
+
+            if (carts is not null)
+            {
+                if (carts.Any())
+                {
+                    carts.Append(EntityToDataEntity(cart));
+                    await InsertData(carts);
+                }
+            }
+            else
+            {
+                throw new Exception("Data wasnt loaded yet");
+            }
         }
 
         #endregion
@@ -111,12 +129,12 @@ namespace Data.Repositories
             {
                 Id = cart.Id,
                 Date = cart.Date,
-                User = users.FirstOrDefault(x => x.Id == cart.Id) ?? new UserEntity(),
-                Products = ProductsInCarToProductsInCarEntity(cart, products)
+                User = users.FirstOrDefault(x => x.Id == cart.UserId) ?? new UserEntity(),
+                Products = ProductsInCartToProductsInCarEntity(cart, products)
             };
         }
 
-        private List<ProductInUser> ProductsInCarToProductsInCarEntity(CartDataEntity cart, IEnumerable<ProductEntity> products)
+        private List<ProductInUser> ProductsInCartToProductsInCarEntity(CartDataEntity cart, IEnumerable<ProductEntity> products)
         {
             List<ProductInUser> productsInUser = new List<ProductInUser>();
 
@@ -134,6 +152,37 @@ namespace Data.Repositories
 
             return productsInUser;
         }
+
+        private CartDataEntity EntityToDataEntity(CartEntity cart)
+        {
+            return new CartDataEntity
+            {
+                Id = cart.Id,
+                Date = DateTime.UtcNow,
+                UserId = cart.User.Id,
+                Products = ProductsInEntityToProductsDataEntity(cart.Products).ToArray()
+            };
+        }
+
+        private IEnumerable<Product> ProductsInEntityToProductsDataEntity(IEnumerable<ProductInUser> products)
+        {
+            List<Product> productsDataEntity = new List<Product>();
+
+            if (products is not null)
+            {
+                foreach (var product in products)
+                {
+                    productsDataEntity.Add(new Product
+                    {
+                        ProductId = product.Product.Id,
+                        Quantity = product.ProductQuantity
+                    });
+                }
+            }
+
+            return productsDataEntity;
+        }
+
         #endregion
     }
 }

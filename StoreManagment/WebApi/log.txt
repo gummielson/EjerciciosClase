@@ -117,3 +117,18 @@
 2023-07-03 09:34:08.943  [Error] - [WebApi.Controllers.UserController] - Unable to delete the selected user: Sequence contains no matching element
 2023-07-03 09:38:02.967  [Information] - [] - -------- Application start ---------
 2023-07-03 09:38:50.919  [Information] - [] - -------- Application start ---------
+2023-07-03 13:22:09.031  [Information] - [] - -------- Application start ---------
+2023-07-03 13:25:07.415  [Information] - [] - -------- Application start ---------
+2023-07-03 17:54:35.226  [Information] - [] - -------- Application start ---------
+2023-07-03 17:55:50.178  [Information] - [] - -------- Application start ---------
+2023-07-04 09:29:19.280  [Information] - [] - -------- Application start ---------
+2023-07-04 09:29:42.226  [Error] - [WebApi.Controllers.CartController] - Unable to insert Cart
+2023-07-04 09:30:20.636  [Information] - [] - -------- Application start ---------
+2023-07-04 09:41:24.704  [Information] - [] - -------- Application start ---------
+2023-07-04 09:43:01.952  [Information] - [] - -------- Application start ---------
+2023-07-04 09:43:56.779  [Error] - [WebApi.Controllers.CartController] - Unable to insert Cart
+2023-07-04 09:44:17.401  [Error] - [WebApi.Controllers.CartController] - Unable to insert Cart
+2023-07-04 09:45:02.914  [Information] - [] - -------- Application start ---------
+2023-07-04 09:45:14.194  [Error] - [WebApi.Controllers.CartController] - Unable to insert Cart
+2023-07-04 09:47:37.612  [Information] - [] - -------- Application start ---------
+2023-07-04 10:02:18.016  [Information] - [] - -------- Application start ---------

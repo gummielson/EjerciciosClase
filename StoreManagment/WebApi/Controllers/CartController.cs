@@ -1,4 +1,5 @@
-﻿using Application.ServicesContracts;
+﻿using Application.Dtos;
+using Application.ServicesContracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -47,6 +48,24 @@ namespace WebApi.Controllers
                 _logger.LogError($"Unable to delete cart: {ex.Message}");
 
                 return BadRequest($"Unable to delete cart: {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        [Route("InsertCart")]
+        public async Task<IActionResult> InsertCart(CartDto Cart)
+        {
+            try
+            {
+                await _service.InsertCart(Cart);
+
+                return Ok("The Cart was inserted properly");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Unable to insert Cart");
+
+                return BadRequest(ex.Message);
             }
         }
     }

@@ -40,6 +40,30 @@ namespace Data.Repositories
         {
             await _fileRepository.WriteDataFirst(await _provider.GetAll<UserDataEntity>("User"));
         }
+
+        public async Task InsertUser(UserEntity userEntity)
+        {
+            IEnumerable<UserDataEntity>? users = await GetData();
+
+            if (users is not null)
+            {
+                if (users.Any())
+                {
+                    users.Append(EntityToDataEntity(userEntity));
+                    await InsertData(users);
+                }
+            }
+            else
+            {
+                throw new Exception("The wasnt loaded yet");
+            }
+        }
+
+        public async Task<UserEntity> GetUserById(int id)
+        {
+            return (await GetAllUsers()).FirstOrDefault(x => x.Id == id) ?? throw new Exception("The entered user doesnt exists");
+        }
+
         #endregion
 
         #region private methods
@@ -56,6 +80,7 @@ namespace Data.Repositories
             return users;
         }
 
+        #region mappers
         private IEnumerable<UserEntity> DataEntityToEntity(IEnumerable<UserDataEntity> dataEntities) 
         {
             return dataEntities.Select(dataEntity => new UserEntity
@@ -74,6 +99,42 @@ namespace Data.Repositories
                 Street = dataEntity.AddressProperty.Street,
                 Username = dataEntity.Username
             });
+        }
+
+        private UserDataEntity EntityToDataEntity(UserEntity userEntity)
+        {
+            return new UserDataEntity
+            {
+                Id = userEntity.Id,
+                AddressProperty = new UserDataEntity.Address
+                {
+                    City = userEntity.City,
+                    ZipCode = userEntity.ZipCode,
+                    GeolocationProperty = new UserDataEntity.Address.Geolocation
+                    {
+                        Lat = userEntity.Lat, 
+                        Long = userEntity.Long
+                    },
+                    Number = userEntity.Number,
+                    Street = userEntity.Street
+                },
+                NameProperty = new UserDataEntity.Name
+                {
+                    FirstName = userEntity.FirstName,
+                    LastName = userEntity.LastName
+                },
+                Email = userEntity.Email,
+                Password = userEntity.Password,
+                Phone = userEntity.Phone,
+                Username = userEntity.Username
+            };
+        }
+        #endregion
+
+        private async Task InsertData(IEnumerable<UserDataEntity> users)
+        {
+            await _fileRepository.WriteData(users);
+            _cache.SetIntoCache("users", users);
         }
         #endregion
     }

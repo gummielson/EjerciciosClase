@@ -1,13 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace Application.Dtos
 {
-    public class UserEntity
+    public class UserDto
     {
-        [Required(ErrorMessage = "The Id field is required.")]
-        [Range(1, int.MaxValue, ErrorMessage = "The Id field must be greater than or equal to 1.")]
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "The Lat field is required.")]
         [RegularExpression(@"^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$", ErrorMessage = "Invalid Latitude format.")]
         public string Lat { get; set; } = string.Empty;

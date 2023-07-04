@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Dtos;
+using Domain.Entities;
 
 namespace Application.ServicesContracts
 {
@@ -7,6 +8,6 @@ namespace Application.ServicesContracts
         Task<IEnumerable<CartEntity>> GetAllCarts();
         Task Delete(int id);
         Task DeleteProductInCarts(int idProduct);
-        Task DeleteCartFromUser(int idUser);
+        Task InsertCart(CartDto cart);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Dtos;
+using Domain.Entities;
 
 namespace Application.ServicesContracts
 {
@@ -6,7 +7,7 @@ namespace Application.ServicesContracts
     {
         Task<IEnumerable<ProductEntity>> GetAllProducts();
         Task DeleteProduct(int id);
-        //Task<ResponseDto> InsertProduct(ProductDto product);
+        Task InsertProduct(ProductDto product);
         //Task<IEnumerable<ProductDto>> GetProductsByFilter(string filter);
     }
 }

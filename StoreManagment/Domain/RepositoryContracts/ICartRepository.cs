@@ -9,5 +9,6 @@ namespace Domain.RepositoryContracts
         Task Delete(int id);
         Task DeleteProductsInCart(int idProduct);
         Task DeleteCartFromUser(int idUser);
+        Task InsertCart(CartEntity cart);
     }
 }
