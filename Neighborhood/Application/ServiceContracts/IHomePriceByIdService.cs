@@ -1,6 +1,6 @@
 ﻿namespace Application.ServiceContracts
 {
-    public interface IHomeService
+    public interface IHomePriceByIdService
     {
         Task<decimal> GetHomePrice(int id);
     }

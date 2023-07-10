@@ -5,11 +5,11 @@ using Domain.RepositoryContracts;
 
 namespace Application.Services
 {
-    public class HomeService : IHomeService
+    public class HomePriceByIdService : IHomePriceByIdService
     {
         private readonly IRepository _repository;
 
-        public HomeService(IRepository repository)
+        public HomePriceByIdService(IRepository repository)
         {
             _repository = repository;
         }
@@ -17,9 +17,17 @@ namespace Application.Services
         public async Task<decimal> GetHomePrice(int id)
         {
             ViviendasEntity home = await GetVivienda(id);
-            BarrioEntity barrio = await GetBarrio(home.IdBarrio);
 
-            return HomePriceDomainService.GetPriceByHome(home, barrio, await GetAllAniadidos());
+            if(home is null)
+            {
+                return 0;
+            }
+            else
+            {
+                BarrioEntity barrio = await GetBarrio(home.IdBarrio);
+
+                return HomePriceDomainService.GetPriceByHome(home, barrio, await GetAllAniadidos());
+            }
         }
 
         #region private methods
@@ -28,7 +36,7 @@ namespace Application.Services
         {
             ViviendasEntity? vivienda = (await GetAllHomes()).FirstOrDefault(x => x.Id == id);
 
-            return vivienda ?? new();
+            return vivienda;
         }
 
         private async Task<BarrioEntity> GetBarrio(int id)

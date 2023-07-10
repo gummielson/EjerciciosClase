@@ -10,7 +10,7 @@ namespace IoC
     {
         public static void ConfigureIoC(this IServiceCollection services)
         {
-            services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<IHomePriceByIdService, HomePriceByIdService>();
             services.AddScoped<IRepository, Repository>();
 
             //services.AddScoped<IUserService, UserService>();

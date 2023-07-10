@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
-    public class HomeController : Controller
+    public class HomePriceByIdServiceController : Controller
     {
-        public readonly ILogger<HomeController> _logger;
-        private readonly IHomeService _service;
+        public readonly ILogger<HomePriceByIdServiceController> _logger;
+        private readonly IHomePriceByIdService _service;
 
-        public HomeController(ILogger<HomeController> logger, IHomeService service)
+        public HomePriceByIdServiceController(ILogger<HomePriceByIdServiceController> logger, IHomePriceByIdService service)
         {
             _logger = logger;
             _service = service;
@@ -22,13 +22,15 @@ namespace WebAPI.Controllers
             {
                 decimal price = await _service.GetHomePrice(id);
 
-                return Ok($"This is the recipe price: {price}");
+                if(price == 0) 
+                {
+                    return Ok($"No home was found");
+                }
+                else
+                {
+                    return Ok($"This is the home price: {price}");
+                }
             }
-            //catch (NotRecipeFoundException ex)
-            //{
-            //    _logger.LogInformation("Recipe name doesn`t exists");
-            //    return Ok(ex.Message);
-            //}
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
