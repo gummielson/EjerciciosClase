@@ -132,3 +132,7 @@
 2023-07-04 09:45:14.194  [Error] - [WebApi.Controllers.CartController] - Unable to insert Cart
 2023-07-04 09:47:37.612  [Information] - [] - -------- Application start ---------
 2023-07-04 10:02:18.016  [Information] - [] - -------- Application start ---------
+2023-07-04 10:10:25.177  [Information] - [] - -------- Application start ---------
+2023-07-04 10:12:37.931  [Information] - [] - -------- Application start ---------
+2023-07-04 10:16:38.759  [Information] - [] - -------- Application start ---------
+2023-07-04 11:09:48.985  [Information] - [] - -------- Application start ---------

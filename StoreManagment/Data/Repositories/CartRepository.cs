@@ -81,15 +81,12 @@ namespace Data.Repositories
 
         public async Task InsertCart(CartEntity cart)
         {
-            IEnumerable<CartDataEntity>? carts = await GetData();
+            IEnumerable<CartDataEntity> carts = await GetData();
 
-            if (carts is not null)
+            if (carts.Any())
             {
-                if (carts.Any())
-                {
-                    carts.Append(EntityToDataEntity(cart));
-                    await InsertData(carts);
-                }
+                carts = carts.Append(EntityToDataEntity(cart));
+                await InsertData(carts);
             }
             else
             {

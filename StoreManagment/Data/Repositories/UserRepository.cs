@@ -49,7 +49,7 @@ namespace Data.Repositories
             {
                 if (users.Any())
                 {
-                    users.Append(EntityToDataEntity(userEntity));
+                    users = users.Append(EntityToDataEntity(userEntity));
                     await InsertData(users);
                 }
             }

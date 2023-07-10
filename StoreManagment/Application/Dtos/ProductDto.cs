@@ -5,7 +5,7 @@ namespace Application.Dtos
     public class ProductDto
     {
         [Required(ErrorMessage = "The title field is required")]
-        [RegularExpression(@"^[A-Za-z]+$", ErrorMessage = "The Title field can only contain alphabetical characters.")]
+        [RegularExpression(@"^[A-Za-z\s]+$", ErrorMessage = "The Title field can only contain alphabetical characters.")]
         [MaxLength(50, ErrorMessage = "The Title field cannot exceed 50 characters.")]
         public string Title { get; set; } = string.Empty;
 
@@ -13,8 +13,8 @@ namespace Application.Dtos
         [Range(0.01, double.MaxValue, ErrorMessage = "The Price field must be greater than or equal to 0.01.")]
         public float Price { get; set; }
 
-        [Required(ErrorMessage = "The tittle field is required")]
-        [RegularExpression(@"^[A-Za-z]+$", ErrorMessage = "The Title field can only contain alphabetical characters.")]
+        [Required(ErrorMessage = "The description field is required")]
+        [RegularExpression(@"^[A-Za-z\s]+$", ErrorMessage = "The description field can only contain alphabetical characters and spaces.")]
         [MaxLength(250, ErrorMessage = "The Description field cannot exceed 250 characters.")]
         public string Description { get; set; } = string.Empty;
 

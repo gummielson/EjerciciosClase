@@ -36,7 +36,7 @@ namespace Data.Repositories
             {
                 if(products.Any()) 
                 {
-                    products.Append(EntityToDataEntity(product));
+                    products = products.Append(EntityToDataEntity(product));
                     await InsertData(products);
                 }
             }
